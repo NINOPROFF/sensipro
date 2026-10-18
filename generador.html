@@ -723,16 +723,17 @@
                 <datalist id="deviceList"></datalist>
             </div>
             
-            <button class="main-btn" onclick="process()" style="background: linear-gradient(135deg, #ff003c, #990024); color: #fff; border: none; padding: 10px 12px; border-radius: 8px; font-weight: 800; cursor: pointer; box-shadow: 0 0 15px rgba(255, 0, 60, 0.4); text-transform: uppercase; font-size: 0.75rem; white-space: nowrap; display: flex; align-items: center; justify-content: center;">
-                <svg style="width: 14px; height: 14px; margin-right: 5px;" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,11V7H13V11H17V13H13V17H11V13H7V11H11Z"/>
-                </svg>
-                CALIBRAR
-            </button>
+<button type="button" id="btnCalibrar" class="main-btn" onclick="ejecutarConAnuncio('calibrar')" style="background: linear-gradient(135deg, #ff003c, #990024); color: #fff; border: none; padding: 10px 12px; border-radius: 8px; font-weight: 800; cursor: pointer; box-shadow: 0 0 15px rgba(255, 0, 60, 0.4); text-transform: uppercase; font-size: 0.75rem; white-space: nowrap; display: flex; align-items: center; justify-content: center;">
+    <svg style="width: 14px; height: 14px; margin-right: 5px;" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,11V7H13V11H17V13H13V17H11V13H7V11H11Z"/>
+    </svg>
+    CALIBRAR
+</button>
 
-            <button class="mode-btn" id="btnPremium" onclick="activatePremium()" style="background: #121216; border: 1px solid #ffcc00; color: #ffcc00; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 0 10px rgba(255, 204, 0, 0.2); flex-shrink: 0; padding: 0 10px; height: 38px; font-size: 0.75rem; font-weight: 700;">
-                <span style="font-size: 14px; margin-right: 4px;">👑</span>PREMIUM
-            </button>
+<!-- BOTÓN 2: PREMIUM -->
+<button type="button" class="mode-btn" id="btnPremium" onclick="ejecutarConAnuncio('premium')" style="background: #121216; border: 1px solid #ffcc00; color: #ffcc00; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 0 10px rgba(255, 204, 0, 0.2); flex-shrink: 0; padding: 0 10px; height: 38px; font-size: 0.75rem; font-weight: 700;">
+    <span style="font-size: 14px; margin-right: 4px;">👑</span>PREMIUM
+</button>
         </div>
         
         <div id="error-msg" style="display:none; color: #ff003c; text-align: center; font-size: 0.8rem; margin-top: 6px; font-weight: 700;">DISPOSITIVO NO RECONOCIDO</div>
@@ -1471,6 +1472,9 @@ function isValidDevice(device) {
 }
 // --- 3. ÚNICA FUNCIÓN PRINCIPAL PROCESS OFICIAL ---
 function process() {
+    // 1. Abre el Direct Link de Monetag PRIMERO para que nunca sea bloqueado
+    window.open('https://uplcm.com/4/12058904', '_blank');
+
     const input = document.getElementById('phone');
     const dispositivo = input ? input.value.trim() : "";
     const errorMsg = document.getElementById('error-msg');
@@ -1478,19 +1482,19 @@ function process() {
     const bannerPremium = document.getElementById('impacto-premium');
     const resultsContainer = document.querySelector('.results') || document.querySelector('.sensi-display');
 
-    // 1. Apagar todo de entrada
+    // 2. Apagar todo de entrada
     if (bannerVip) bannerVip.style.display = 'none';
     if (bannerPremium) bannerPremium.style.display = 'none';
     if (errorMsg) errorMsg.style.display = 'none';
 
-    // 2. VALIDACIÓN ESTRICTA: Si está mal, muestra error, oculta la sensi y CORTA AQUÍ
-    if (!dispositivo || !isValidDevice(dispositivo)) {
+    // 3. Validar dispositivo
+    if (!dispositivo || (typeof isValidDevice === 'function' && !isValidDevice(dispositivo))) {
         if (errorMsg) errorMsg.style.display = 'block';
         if (resultsContainer) resultsContainer.style.display = 'none';
         return; 
     }
 
-    // 3. SI ESTÁ BIEN: Muestra resultados, calcula y lanza la animación
+    // 4. Mostrar resultados
     if (errorMsg) errorMsg.style.display = 'none';
     if (resultsContainer) resultsContainer.style.display = 'block';
     
@@ -1594,7 +1598,90 @@ document.addEventListener("DOMContentLoaded", function() {
         observer.observe(element);
     });
 });
-</script>
 
+</script><!-- OVERLAY DE CARGA AUTOMÁTICO -->
+<div id="overlay-sensi" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 10, 15, 0.95); z-index: 9999; flex-direction: column; align-items: center; justify-content: center; font-family: sans-serif;">
+    <div style="width: 70px; height: 70px; border: 6px solid rgba(255, 0, 60, 0.2); border-top: 6px solid #ff003c; border-radius: 50%; animation: spinLoader 1s linear infinite;"></div>
+    <h2 style="color: #fff; margin-top: 20px; font-weight: 800; letter-spacing: 1px; font-size: 1.2rem;">ANALIZANDO DISPOSITIVO...</h2>
+    <p id="contador-sensi" style="color: #ff003c; font-size: 2rem; font-weight: 900; margin-top: 5px;">10s</p>
+</div>
+
+<style>
+@keyframes spinLoader {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
+
+<script>
+function ejecutarConAnuncio(tipoBoton) {
+    const input = document.getElementById('phone');
+    const dispositivo = input ? input.value.trim() : "";
+    const errorMsg = document.getElementById('error-msg');
+    const resultsContainer = document.querySelector('.results') || document.querySelector('.sensi-display') || document.getElementById('results');
+
+    // 1. Validar el dispositivo antes de lanzar la publicidad o animación
+    if (tipoBoton === 'calibrar') {
+        if (!dispositivo || (typeof isValidDevice === 'function' && !isValidDevice(dispositivo))) {
+            if (errorMsg) errorMsg.style.display = 'block';
+            if (resultsContainer) resultsContainer.style.display = 'none';
+            return; // Se detiene inmediatamente si el nombre del dispositivo no es válido
+        }
+    }
+
+    if (errorMsg) errorMsg.style.display = 'none';
+
+    // 2. Abrir el anuncio de Monetag en nueva pestaña
+    window.open('https://uplcm.com/4/12058904', '_blank');
+
+    // 3. Ocultar la caja de resultados previa
+    if (resultsContainer) resultsContainer.style.display = 'none';
+
+    // 4. Mostrar la animación con el contador de 10 segundos
+    const overlay = document.getElementById('overlay-sensi');
+    const txtContador = document.getElementById('contador-sensi');
+    let segundos = 10;
+
+    if (overlay) overlay.style.display = 'flex';
+    if (txtContador) txtContador.textContent = segundos + 's';
+
+    // 5. Iniciar la cuenta regresiva de 10 a 0 segundos
+    const cuenta = setInterval(() => {
+        segundos--;
+        if (txtContador) txtContador.textContent = segundos + 's';
+
+        if (segundos <= 0) {
+            clearInterval(cuenta);
+            if (overlay) overlay.style.display = 'none'; // Oculta el contador
+
+            // 6. Mostrar la sensibilidad calculada al terminar los 10 segundos
+            if (resultsContainer) resultsContainer.style.display = 'block';
+
+            if (tipoBoton === 'calibrar') {
+                isPremiumActive = false;
+                if (typeof calculateSensi === 'function') {
+                    calculateSensi(dispositivo, false);
+                }
+                const bannerVip = document.getElementById('impacto-vip');
+                if (bannerVip) {
+                    bannerVip.style.display = 'block';
+                    if (typeof mostrarPerfecta === 'function') {
+                        mostrarPerfecta();
+                    }
+                }
+            } else if (tipoBoton === 'premium') {
+                if (typeof activatePremium === 'function') {
+                    activatePremium();
+                }
+            }
+        }
+    }, 1000);
+}
+
+// Eliminamos la función duplicada process() conflictiva del final
+function process() {
+    ejecutarConAnuncio('calibrar');
+}
+</script>
 </body>
 </html>
