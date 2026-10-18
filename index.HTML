@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SensiPro VIP - La Comunidad #1 de Sensibilidades</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>:root {
+    --bg-main: #0a0a0c;
+    --bg-card: #121216;
+    --bg-card-hover: #1a1a20;
+    --primary: #ff003c;
+    --primary-glow: rgba(255, 0, 60, 0.4);
+    --primary-dark: #990024;
+    --text-main: #ffffff;
+    --text-sub: #a0a0ab;
+    --border: #22222a;
+    --border-highlight: #ff003c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(10, 10, 12, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+    padding: 15px 0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: relative;
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--text-main);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo span {
+    color: var(--primary);
+    text-shadow: 0 0 10px var(--primary-glow);
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--text-sub);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--primary);
+    text-shadow: 0 0 8px var(--primary-glow);
+}
+
+.nav-btn {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white !important;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px var(--primary-glow);
+    transition: 0.3s;
+}
+
+.nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px var(--primary-glow);
+}
+
+/* --- MENÚ HAMBURGUESA SOLO CSS --- */
+.menu-checkbox {
+    display: none;
+}
+
+.menu-toggle-btn {
+    display: none;
+    color: #ffffff;
+    font-size: 1.6rem;
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    padding: 160px 20px 100px;
+    text-align: center;
+    background: radial-gradient(circle at center, rgba(255, 0, 60, 0.15) 0%, rgba(10, 10, 12, 1) 70%);
+    position: relative;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(255, 0, 60, 0.1);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px var(--primary-glow);
+}
+
+.hero h1 {
+    font-size: 3.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+}
+
+.hero h1 span {
+    color: var(--primary);
+    text-shadow: 0 0 20px var(--primary-glow);
+}
+
+.hero p {
+    max-width: 650px;
+    margin: 0 auto 35px;
+    color: var(--text-sub);
+    font-size: 1.1rem;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-main {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #fff;
+    padding: 16px 36px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 20px var(--primary-glow);
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-main:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px var(--primary-glow);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border);
+    padding: 16px 36px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-secondary:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--text-sub);
+}
+
+/* --- STATS COUNTER --- */
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 60px;
+    flex-wrap: wrap;
+}
+
+.stat-item h3 {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--primary);
+}
+
+.stat-item p {
+    font-size: 0.85rem;
+    color: var(--text-sub);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- SECTIONS COMMON --- */
+.section {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.section-title h2 span {
+    color: var(--primary);
+}
+
+.section-title p {
+    color: var(--text-sub);
+    margin-top: 8px;
+}
+
+/* --- FEATURES GRID --- */
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 30px;
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-highlight);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.card p {
+    color: var(--text-sub);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+.card-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* --- VIP BANNER --- */
+.vip-banner {
+    background: linear-gradient(135deg, rgba(255,0,60,0.1), rgba(10,10,12,0.9)), var(--bg-card);
+    border: 2px solid var(--primary);
+    border-radius: 16px;
+    padding: 50px 30px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(255, 0, 60, 0.15);
+    margin: 40px auto;
+}
+
+.vip-banner h2 {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+.vip-banner p {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    color: var(--text-sub);
+}
+
+/* --- FOOTER --- */
+footer {
+    background: #050507;
+    border-top: 1px solid var(--border);
+    padding: 70px 20px 30px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    margin-bottom: 50px;
+}
+/* Estilos para la columna de Comunidad en el footer */
+.footer-col.footer-community {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Título con la barra vertical roja característica */
+.footer-col.footer-community h4 {
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    padding-left: 12px;
+    margin: 0 0 4px 0;
+}
+
+.footer-col.footer-community h4::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    bottom: 2px;
+    width: 3px;
+    background: #ff003c;
+    border-radius: 2px;
+    box-shadow: 0 0 8px #ff003c;
+}
+
+/* Descripción corta */
+.footer-col.footer-community p {
+    color: #a0a0ab;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Botón llamativo para unirse a TikTok */
+.footer-col.footer-community .community-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #121216;
+    color: #fff;
+    border: 1px solid #ff003c;
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 0, 60, 0.2);
+    width: fit-content;
+}
+
+/* Efecto hover al pasar el mouse por el botón */
+.footer-col.footer-community .community-btn:hover {
+    background: #ff003c;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(255, 0, 60, 0.5);
+    transform: translateY(-2px);
+}
+.footer-col h4 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: var(--text-main);
+    border-left: 3px solid var(--primary);
+    padding-left: 10px;
+}
+
+.footer-col p {
+    color: var(--text-sub);
+    font-size: 0.9rem;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: var(--text-sub);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+    padding-left: 5px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.social-icons a {
+    width: 40px;
+    height: 40px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-main);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    box-shadow: 0 0 15px var(--primary-glow);
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid var(--border);
+    color: var(--text-sub);
+    font-size: 0.85rem;
+}
+
+/* --- RESPONSIVE DESIGN UNIFICADO --- */
+@media (max-width: 768px) {
+    .menu-toggle-btn {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(10, 10, 12, 0.98);
+        padding: 25px 0;
+        border-bottom: 2px solid var(--primary);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.95);
+        gap: 18px;
+        text-align: center;
+    }
+
+    .menu-checkbox:checked ~ .nav-links {
+        display: flex;
+    }
+
+    .nav-links li {
+        width: 100%;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 10px 0;
+        font-size: 1.1rem;
+    }
+
+    .hero h1 { font-size: 2.2rem; }
+    .hero p { font-size: 0.95rem; }
+    .btn-main, .btn-secondary { width: 100%; justify-content: center; }
+    .stats { gap: 25px; }
+}
+        /* Estado inicial: oculto y ligeramente desplazado hacia abajo */
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+/* Estado activo cuando entra en pantalla */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+   /* ==========================================
+   ESTILOS DE LA BARRA DE DESPLAZAMIENTO (SCROLLBAR)
+   ========================================== */
+
+/* Para navegadores basados en WebKit (Chrome, Edge, Safari, Opera) */
+::-webkit-scrollbar {
+    width: 8px; /* Ancho de la barra */
+}
+
+::-webkit-scrollbar-track {
+    background: #121216; /* Color del fondo de la barra (combina con tu web) */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2a2a35; /* Color del deslizador en reposo */
+    border-radius: 4px; /* Bordes redondeados */
+    border: 1px solid #121216;
+}
+
+/* Color del deslizador cuando pasas el cursor por encima o la estás arrastrando */
+::-webkit-scrollbar-thumb:hover {
+    background: #ff003c; /* Se vuelve rojo brillante al tocarlo, acorde a la marca */
+    box-shadow: 0 0 10px rgba(255, 0, 60, 0.6);
+}
+
+/* Para Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #2a2a35 #121216; /* [Deslizador] [Fondo] */
+} </style>
+</head>
+<body>
+<!-- NAVBAR -->
+<nav class="navbar reveal">
+    <div class="nav-container">
+        <!-- LOGO + TEXTO -->
+        <a href="index.html" class="logo">
+            <img src="https://i.postimg.cc/T15yW3hP/Whats-App-Image-2026-09-02-at-11-04-02-AM-(1).jpg" alt="Logo" style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid #ff003c;">
+            SENSI <span style="color: #ff003c; margin: 0 2px;">✗</span> <span>PRO</span>
+        </a>
+        <!-- CHECKBOX INVISIBLE + BOTÓN HAMBURGUESA -->
+        <input type="checkbox" id="menu-toggle-check" class="menu-checkbox">
+        <label for="menu-toggle-check" class="menu-toggle-btn">
+            <i class="fa-solid fa-bars"></i>
+        </label>
+
+        <!-- ENLACES DEL MENÚ -->
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Inicio</a></li>
+            <li><a href="generador.html">Generador</a></li>
+            <li><a href="#caracteristicas">Ventajas</a></li>
+            <li><a href="#comunidad">Comunidad</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- HERO SECTION -->
+<header class="hero">
+    <div class="hero-badge reveal"><i class="fa-solid fa-fire"></i> Algoritmo de Sensibilidad 2026</div>
+    <h1 class="reveal">Domina la Mira con la <span>Sensibilidad Perfecta</span></h1>
+    <p class="reveal">Calcula y ajusta la configuración exacta para tu dispositivo. Diseñado específicamente para jugadores de alto rendimiento en Android y iOS .</p>
+    
+    <div class="hero-buttons reveal">
+        <a href="generador.html" class="btn-main">
+            <i class="fa-solid fa-gamepad"></i> GENERAR SENSIBILIDAD
+        </a>
+        <a href="#comunidad" class="btn-secondary">
+            <i class="fa-brands fa-youtube"></i> DIRECTOS EN VIVO
+        </a>
+    </div>
+
+  <div class="stats reveal">
+    <div class="stat-item">
+        <h3 class="counter" id="statPlayers" data-target="150" data-prefix="+" data-suffix="K">0</h3>
+        <p>Jugadores Satisfechos</p>
+    </div>
+    <div class="stat-item">
+        <h3 class="counter" data-target="99.4" data-decimals="1" data-suffix="%">0</h3>
+        <p>Precisión de Tiro</p>
+    </div>
+    <div class="stat-item">
+        <h3 class="counter" data-target="100" data-suffix="%">0</h3>
+        <p>Gratuito e Ilimitado</p>
+    </div>
+</div>
+</header>
+
+<!-- SECCIÓN DE CARACTERÍSTICAS -->
+<section class="section" id="caracteristicas">
+    <div class="section-title reveal">
+        <h2>Herramientas de <span>Elite</span></h2>
+        <p>Todo lo que necesitas para mejorar tu jugabilidad en un solo lugar.</p>
+    </div>
+
+    <div class="grid-3">
+        <div class="card reveal">
+            <i class="fa-solid fa-mobile-screen-button card-icon"></i>
+            <h3>OPTIMIZADOR DPI</h3>
+            <p>Calcula el DPI óptimo según la resolución y velocidad de respuesta táctil de tu dispositivo móvil.</p>
+            <a href="generador.html" class="card-link">CALCULAR DPI <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="card reveal">
+            <i class="fa-solid fa-bullseye card-icon"></i>
+            <h3>AJUSTE DE MIRA</h3>
+            <p>Configuraciones específicas para Mira General, Punto Rojo, 2X, 4X y Francotirador sin sobrepasos.</p>
+            <a href="generador.html" class="card-link">AJUSTAR MIRAS <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="card reveal">
+            <i class="fa-solid fa-laptop card-icon"></i>
+            <h3>SOPORTE EMULADOR</h3>
+            <p>Parámetros ajustados para BlueStacks, MSI App Player y SmartGaaga con aceleración cero.</p>
+            <a href="generador.html" class="card-link">VER CONFIGURACIÓN <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </div>
+</section>
+
+<!-- BANNER DESTACADO -->
+<section class="section">
+    <div class="vip-banner reveal">
+        <h2>¿Listo para subir a Gran Maestro?</h2>
+        <p>Accede a nuestro algoritmo avanzado de cálculo de sensibilidad totalmente gratis y libre de baneos.</p>
+        <a href="generador.html" class="btn-main" style="display: inline-flex;">
+            <i class="fa-solid fa-rocket"></i> ABRIR EL GENERADOR AHORA
+        </a>
+    </div>
+</section>
+
+<!-- CANALES Y COMUNIDAD -->
+<section class="section" id="comunidad">
+    <div class="section-title reveal">
+        <h2>Sigue los <span>Directos</span></h2>
+        <p>Únete a las salas privadas, torneos diarios y dinámicas en vivo.</p>
+    </div>
+
+    <div class="grid-3">
+        <!-- TARJETA YOUTUBE -->
+        <div class="card reveal" style="text-align: center;">
+            <div class="card-icon"><i class="fa-brands fa-youtube" style="color: #ff0000;"></i></div>
+            <h3>Canal de YouTube</h3>
+            <p>Directos diarios, salas de clasificatoria y sorteos de recompensas en vivo.</p>
+            <a href="https://www.youtube.com/@ninoproff" target="_blank" class="btn-secondary" style="justify-content: center;">SUSCRIBIRSE</a>
+        </div>
+
+        <!-- TARJETA CENTRAL NINOPROFF -->
+        <div class="card reveal" style="text-align: center; border: 2px solid #ff003c; box-shadow: 0 0 20px rgba(255, 0, 60, 0.3); background: linear-gradient(180deg, rgba(255,0,60,0.08) 0%, var(--bg-card) 100%);">
+            <div style="display: inline-block; background: #ff003c; color: #fff; font-size: 0.75rem; font-weight: 800; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;">STREAMER VIP</div>
+            
+            <div class="card-icon" style="margin-bottom: 15px;">
+                <img src="https://i.postimg.cc/T15yW3hP/Whats-App-Image-2026-09-02-at-11-04-02-AM-(1).jpg" alt="ninoproff" style="width: 75px; height: 75px; border-radius: 50%; object-fit: cover; border: 2px solid #ff003c; box-shadow: 0 0 15px rgba(255,0,60,0.5);">
+            </div>
+            <h3>ninoproff</h3>
+            <p>Streamer oficial enfocado en traer la mejor configuración para que mejores tu nivel.</p>
+            <a href="generador.html" class="btn-main" style="justify-content: center; padding: 12px 20px; font-size: 0.9rem;"><i class="fa-solid fa-gamepad"></i> IR AL GENERADOR</a>
+        </div>
+
+        <!-- TARJETA TIKTOK -->
+        <div class="card reveal" style="text-align: center;">
+            <div class="card-icon"><i class="fa-brands fa-tiktok" style="color: #fff;"></i></div>
+            <h3>TikTok Clips</h3>
+            <p>Highlights, configuraciones rápidas y los mejores momentos del stream.</p>
+            <a href="https://www.tiktok.com/@ninoproff" target="_blank" class="btn-secondary" style="justify-content: center;">SEGUIR</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER EXTENSO -->
+<footer class="reveal">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h4>SENSI <span style="color: #ff003c; margin: 0 2px;">✗</span> <span>PRO</span></h4>
+            <p>La plataforma número uno para jugadores que buscan optimizar su rendimiento táctil y precisión de disparo en juegos battle royale móviles y de emulador.</p>
+            <div class="social-icons">
+                <a href="https://www.youtube.com/@ninoproff" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.tiktok.com/@ninoproff" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>Navegación</h4>
+            <ul class="footer-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="generador.html">Generador de Sensibilidad</a></li>
+                <li><a href="#caracteristicas">Herramientas Elite</a></li>
+                <li><a href="#comunidad">Comunidad & Directos</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col footer-community">
+            <h4>COMUNIDAD</h4>
+            <p>Únete a nuestro grupo oficial en TikTok para enterarte de salas privadas, torneos diarios y calibraciones exclusivas.</p>
+            <a href="https://www.tiktok.com/@ninoproff" target="_blank" class="community-btn">
+                <i class="fa-brands fa-tiktok"></i> UNETE A TEAM PROS
+            </a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Estado del Servicio</h4>
+            <p><i class="fa-solid fa-circle" style="color: #00ff66; font-size: 0.8rem;"></i> Algoritmo Actualizado (2026)</p>
+            <p style="margin-top: 10px;"><i class="fa-solid fa-shield-halved" style="color: var(--primary);"></i> 100% Anti-Ban Seguro</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 ninoproff. Todos los derechos reservados. Este sitio web es una herramienta de optimización independiente creada para la comunidad de jugadores y creadores de contenido. Todas las marcas registradas, nombres de juegos y logotipos pertenecen exclusivamente a sus respectivos propietarios y se utilizan únicamente con fines informativos y de compatibilidad técnica.</p>
+    </div>
+</footer>
+<script>document.addEventListener("DOMContentLoaded", function() {
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -50px 0px', // Activa la animación un poco antes de que el elemento toque el borde inferior
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                // Dejamos de observarlo una vez que ya apareció para optimizar rendimiento
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Selecciona todos los elementos con la clase .reveal
+    document.querySelectorAll('.reveal').forEach(element => {
+        observer.observe(element);
+    });
+});
+document.addEventListener("DOMContentLoaded", function() {
+    const counters = document.querySelectorAll('.counter');
+    let animated = false;
+
+    // --- Simulación de crecimiento real de jugadores ---
+    const playersElement = document.getElementById('statPlayers');
+    if (playersElement) {
+        let basePlayers = 150.0; // Base de 150K
+        
+        // Obtenemos si ya hay un valor guardado en el navegador
+        let savedBonus = localStorage.getItem('sensi_players_bonus');
+        
+        if (!savedBonus) {
+            // Si es la primera vez, generamos un incremento aleatorio inicial realista
+            savedBonus = (Math.random() * 2.5).toFixed(2); // Suma entre 0 y 2.5K extra
+            localStorage.setItem('sensi_players_bonus', savedBonus);
+        } else {
+            // Cada vez que recarga o entra, simulamos que se unieron unos cuantos más
+            if (Math.random() > 0.4) { // 60% de probabilidad de sumar más en cada visita
+                savedBonus = (parseFloat(savedBonus) + 0.05).toFixed(2);
+                localStorage.setItem('sensi_players_bonus', savedBonus);
+            }
+        }
+        
+        let finalTarget = basePlayers + parseFloat(savedBonus);
+        playersElement.setAttribute('data-target', finalTarget.toFixed(2));
+        playersElement.setAttribute('data-suffix', 'K');
+    }
+
+    function runCounters() {
+        counters.forEach(counter => {
+            const target = parseFloat(counter.getAttribute('data-target'));
+            const decimals = parseInt(counter.getAttribute('data-decimals')) || (counter.id === 'statPlayers' ? 2 : 0);
+            const prefix = counter.getAttribute('data-prefix') || '';
+            const suffix = counter.getAttribute('data-suffix') || '';
+            
+            let count = 0;
+            const duration = 2000; // 2 segundos de animación fluida
+            const steps = 60;
+            const increment = target / steps;
+            const stepTime = duration / steps;
+
+            let currentStep = 0;
+            const timer = setInterval(() => {
+                currentStep++;
+                count += increment;
+                
+                if (currentStep >= steps) {
+                    count = target;
+                    clearInterval(timer);
+                }
+
+                counter.innerText = prefix + count.toFixed(decimals) + suffix;
+            }, stepTime);
+        });
+    }
+
+    // Disparar el contador al hacer scroll y ver la sección
+    const statsSection = document.querySelector('.stats');
+    if (statsSection) {
+        const statsObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !animated) {
+                    runCounters();
+                    animated = true;
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statsObserver.observe(statsSection);
+    }
+});
+</script>
+</body>
+</html>

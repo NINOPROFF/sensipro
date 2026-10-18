@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/T15yW3hP/Whats-App-Image-2026-09-02-at-11-04-02-AM-(1).jpg">  <title>SENSIPRO</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" type="image/png" href="img/Gemini_Generated_Image_xu3ftmxu3ftmxu3f.png">
+
+<style>
+/* FUENTE Y CONFIGURACIÓN BASE */
+    * { 
+        box-sizing: border-box; 
+    }
+
+    body {
+        background-color: #000000;
+        color: #eeeeee;
+        margin: 0; 
+        padding: 0;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    /* ====== CONTENEDOR CON PUNTO NEÓN GIGANTE ====== */
+    .main-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 140px 10px 80px 10px; /* Deja espacio para el navbar fijo arriba y el footer abajo */
+        z-index: 1;
+    }
+
+    .container {
+        position: relative;
+        width: 100%;
+        max-width: 480px;
+        background: #000000;
+        padding: 25px 20px;
+        border-radius: 20px;
+        margin: auto;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    /* EL PUNTO NEÓN - ROJO FUERTE */
+    .container::before {
+        content: '';
+        position: absolute;
+        width: 250%; 
+        height: 250%;
+        background-image: conic-gradient(
+            transparent 60%, 
+            #ffffff 90%, 
+            #ff0000 100%
+        );
+        top: -75%;
+        left: -75%;
+        animation: rotate-neon 3s linear infinite;
+        z-index: -2;
+        filter: blur(12px); 
+    }
+
+    /* Cubierta interna para el efecto de borde */
+    .container::after {
+        content: '';
+        position: absolute;
+        inset: 4px; 
+        background: #000000c4;
+        border-radius: 17px;
+        z-index: -1;
+    }
+
+    @keyframes rotate-neon {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* ====== BOTONES Y SELECTORES ====== */
+    .mode-selector { 
+        display: flex; 
+        gap: 6px; 
+        margin-top: -20px; 
+        margin-bottom: -7px; 
+    }
+    
+    .mode-btn {
+        flex: 1; 
+        background: #110000; 
+        border: 1px solid #330000; 
+        color: #888; 
+        padding: 8px 2px;
+        border-radius: 8px; 
+        cursor: pointer; 
+        font-size: 0.6rem; 
+        text-transform: uppercase;
+        transition: 0.3s;
+    }
+
+    .mode-btn.active { 
+        background: #ff0000; 
+        color: #fff; 
+        border-color: #fff; 
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+    }
+
+    /* ====== INPUTS Y BOTÓN GENERAR ====== */
+    input { 
+        flex: 2; 
+        background: #000000; 
+        border: 2px solid #440000; 
+        padding: 8px; 
+        color: #fff; 
+        border-radius: 8px; 
+        outline: none;
+        font-size: 0.8rem;
+    }
+
+    .main-btn { 
+        background: #ff0000; 
+        color: #fff; 
+        border: none; 
+        padding: 10px 18px; 
+        border-radius: 8px; 
+        font-weight: 900; 
+        cursor: pointer; 
+        box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+        text-transform: uppercase;
+        font-size: 0.8rem;
+    }
+
+    /* ====== RESULTADOS ROJO NEÓN ====== */
+    .info { 
+        display: flex; 
+        justify-content: space-between; 
+        font-size: 0.75rem; 
+        color: #ffffff; 
+        text-shadow: 1px 1px 2px #000;
+    }
+    
+    .track { 
+        height: 7px !important; 
+        background: #1a0000; 
+        border-radius: 5px; 
+        overflow: visible; 
+        margin-bottom: 12px; 
+        border: 1px solid #330000; 
+        position: relative;
+    }
+    
+    .fill { 
+        height: 100%; 
+        background: linear-gradient(90deg, #cc0000, #ff0000); 
+        box-shadow: 0 0 12px #ff0000;
+        position: relative;
+        border-radius: 5px;
+    }
+
+    /* LA LLAMA EN LA PUNTA */
+    .fill::after {
+        content: '';
+        position: absolute;
+        right: -5px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 14px;
+        height: 14px;
+        background: radial-gradient(circle, #fff 40%, #ff0000 40%, transparent 70%);
+        filter: blur(1px);
+        border-radius: 50% 50% 20% 50%;
+        animation: fire-flicker 0.1s ease-in-out infinite alternate;
+        box-shadow: 0 0 10px #ff0000;
+    }
+
+    @keyframes fire-flicker {
+        0% { transform: translateY(-55%) rotate(-45deg) scale(1); opacity: 0.8; }
+        100% { transform: translateY(-45%) rotate(-40deg) scale(1.2); opacity: 1; }
+    }
+
+    .box {
+        background: #111111 !important;
+        border: 2px solid #ff0000 !important;
+        margin-bottom: -18px;
+        margin-top: -10px;
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.4) !important;
+    }
+    
+    #resBtn, #resDpi {
+        color: #fff !important;
+        text-shadow: 0 0 10px #ff0000;
+        font-size: 1.2rem;
+    }
+
+    svg { 
+        filter: drop-shadow(0 0 5px #ff0000); 
+    }
+
+    /* PANEL LISTA VIP */
+    #panel-lista {
+        position: fixed;
+        right: 30px; 
+        top: 50%;
+        transform: translateY(-50%);
+        width: 240px;
+        background: #000;
+        border: 2px solid #ff0000;
+        border-radius: 15px;
+        padding: 10px;
+    }
+
+    @media (max-width: 1000px) {
+        #panel-lista {
+            position: relative;
+            right: auto;
+            top: auto;
+            transform: none;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 480px;
+        }
+    }
+
+    #input-lista {
+        border-color: #440000 !important;
+        color: #ff0000 !important;
+        font-size: 0.7rem;
+    }
+    
+    #label-lista { 
+        color: #ff0000 !important; 
+        font-size: 0.6rem; 
+    }
+    /* --- NAVBAR --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 10, 12, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #22222a;
+            z-index: 1000;
+            padding: 15px 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif !important;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif !important;
+        }
+
+        .logo span {
+            color: #ff003c;
+            text-shadow: 0 0 10px rgba(255, 0, 60, 0.4);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            color: #a0a0ab;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif !important;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #ff003c;
+            text-shadow: 0 0 8px rgba(255, 0, 60, 0.4);
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #ff003c, #990024);
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px rgba(255, 0, 60, 0.4);
+            transition: 0.3s;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif !important;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(255, 0, 60, 0.6);
+        }
+
+        /* MENÚ HAMBURGUESA SOLO CSS */
+        .menu-checkbox {
+            display: none;
+        }
+
+        .menu-toggle-btn {
+            display: none;
+            color: #ffffff;
+            font-size: 1.6rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #050507;
+            border-top: 1px solid #22222a;
+            padding: 60px 20px 30px;
+            position: relative;
+            z-index: 2;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif !important;
+        }
+/* Estilos para la columna de Comunidad en el footer */
+.footer-col.footer-community {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Título con la barra vertical roja característica */
+.footer-col.footer-community h4 {
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    padding-left: 12px;
+    margin: 0 0 4px 0;
+}
+
+.footer-col.footer-community h4::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    bottom: 2px;
+    width: 3px;
+    background: #ff003c;
+    border-radius: 2px;
+    box-shadow: 0 0 8px #ff003c;
+}
+
+/* Descripción corta */
+.footer-col.footer-community p {
+    color: #a0a0ab;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Botón llamativo para unirse a TikTok */
+.footer-col.footer-community .community-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #121216;
+    color: #fff;
+    border: 1px solid #ff003c;
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 0, 60, 0.2);
+    width: fit-content;
+}
+
+/* Efecto hover al pasar el mouse por el botón */
+.footer-col.footer-community .community-btn:hover {
+    background: #ff003c;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(255, 0, 60, 0.5);
+    transform: translateY(-2px);
+}
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #ffffff;
+            border-left: 3px solid #ff003c;
+            padding-left: 10px;
+            letter-spacing: 0.5px;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif !important;
+        }
+
+        .footer-col p {
+            color: #a0a0ab;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif !important;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #a0a0ab;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: 0.3s;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif !important;
+        }
+
+        .footer-links a:hover {
+            color: #ff003c;
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: #121216;
+            border: 1px solid #22222a;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: #ff003c;
+            border-color: #ff003c;
+            box-shadow: 0 0 15px rgba(255, 0, 60, 0.4);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid #22222a;
+            color: #a0a0ab;
+            font-size: 0.85rem;
+            font-weight: 600;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif !important;
+        }
+
+        /* RESPONSIVE NAVBAR */
+        @media (max-width: 768px) {
+            .menu-toggle-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(10, 10, 12, 0.98);
+                padding: 25px 0;
+                border-bottom: 2px solid #ff003c;
+                box-shadow: 0 15px 30px rgba(0,0,0,0.95);
+                gap: 18px;
+                text-align: center;
+            }
+
+            .menu-checkbox:checked ~ .nav-links {
+                display: flex;
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 10px 0;
+                font-size: 1.1rem;
+            }
+        }
+#impacto-vip {
+    display: none; 
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    width: 260px; 
+    padding: 20px; 
+    background: rgba(0, 0, 0, 0.95); 
+    border: 2px solid #ff0000; 
+    border-radius: 15px; 
+    z-index: 999999; 
+    text-align: center; 
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.7); 
+    pointer-events: none;
+}
+
+#flash-v {
+    position: absolute; 
+    inset: 0; 
+    background: #ff0000; 
+    opacity: 0; 
+    border-radius: 13px; 
+    transition: 0.1s;
+}
+
+.vip-sub {
+    font-family: 'Segoe UI', sans-serif !important; 
+    color: #fff; 
+    font-size: 13px; 
+    letter-spacing: 2px; 
+    display: block; 
+    margin-bottom: 5px; 
+    font-weight: 700;
+}
+
+#txt-v {
+    font-family: 'Segoe UI', sans-serif !important; 
+    color: #ffffff; 
+    font-size: 24px; 
+    margin: 0; 
+    font-weight: 900; 
+    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; 
+    transform: scale(0); 
+    transition: 0.3s cubic-bezier(0.17, 0.89, 0.32, 1.49);
+}
+
+/* Adaptación responsive para móviles (se apilan verticalmente) */
+@media (max-width: 1024px) {
+    .main-layout-container {
+        flex-direction: column !important;
+    }
+    .side-panel {
+        width: 100% !important;
+        max-width: 480px !important;
+        min-height: auto;
+    }
+}
+/* Estado inicial: oculto y ligeramente desplazado hacia abajo */
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+/* Estado activo: cuando el elemento entra en la pantalla se muestra */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* ==========================================
+   ESTILOS DE LA BARRA DE DESPLAZAMIENTO (SCROLLBAR)
+   ========================================== */
+
+/* Para navegadores basados en WebKit (Chrome, Edge, Safari, Opera) */
+::-webkit-scrollbar {
+    width: 8px; /* Ancho de la barra */
+}
+
+::-webkit-scrollbar-track {
+    background: #121216; /* Color del fondo de la barra (combina con tu web) */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2a2a35; /* Color del deslizador en reposo */
+    border-radius: 4px; /* Bordes redondeados */
+    border: 1px solid #121216;
+}
+
+/* Color del deslizador cuando pasas el cursor por encima o la estás arrastrando */
+::-webkit-scrollbar-thumb:hover {
+    background: #ff003c; /* Se vuelve rojo brillante al tocarlo, acorde a la marca */
+    box-shadow: 0 0 10px rgba(255, 0, 60, 0.6);
+}
+
+/* Para Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #2a2a35 #121216; /* [Deslizador] [Fondo] */
+}
+</style>
+</head><body>
+    <!-- NAVBAR -->
+<nav class="navbar reveal">
+    <div class="nav-container">
+        <a href="index.html" class="logo">
+            <img src="https://i.postimg.cc/T15yW3hP/Whats-App-Image-2026-09-02-at-11-04-02-AM-(1).jpg" alt="Logo" style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid #ff003c;">
+            SENSI <span style="color: #ff003c; margin: 0 2px;">✗</span> <span>PRO</span>
+        </a>
+
+        <input type="checkbox" id="menu-toggle-check" class="menu-checkbox">
+        <label for="menu-toggle-check" class="menu-toggle-btn">
+            <i class="fa-solid fa-bars"></i>
+        </label>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="index.html#caracteristicas">Ventajas</a></li>
+            <li><a href="index.html#comunidad">Comunidad</a></li>
+        </ul>
+    </div>
+</nav>
+<section class="reveal" style="width: 100%; max-width: 1000px; margin: 100px auto 30px auto; padding: 0 20px; text-align: center; box-sizing: border-box; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; position: relative; z-index: 1;">
+    <div style="display: inline-block; background: rgba(255,0,60,0.12); color: #ff003c; font-size: 0.75rem; font-weight: 800; padding: 6px 16px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; border: 1px solid rgba(255,0,60,0.4);">
+        CALIBRACIÓN PROFESIONAL 2026
+    </div>
+    
+    <h2 style="color: #ffffff; font-size: 1.8rem; font-weight: 800; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.5px;">
+        OPTIMIZA TU DISPOSITIVO PARA EL <span style="color: #ff003c;">MÁXIMO NIVEL</span>
+    </h2>
+    <p style="color: #b0b0b5; font-size: 0.9rem; line-height: 1.6; max-width: 750px; margin: 0 auto; font-weight: 500;margin-bottom: -100PX;">
+        El algoritmo analiza la tasa de respuesta táctil y las pulgadas de tu pantalla para calcular un DPI exacto que evite los saltos de mira y garantice tiros a la cabeza limpios en cada partida.
+    </p>
+</section>
+<!-- CONTENEDOR GENERAL RESPONSIVO -->
+<div class="main-layout-container" style="display: flex; justify-content: center; align-items: center; gap: 20px; width: 100%; max-width: 1200px; margin: 0 auto; padding: 20px; box-sizing: border-box; flex-wrap: wrap; margin-top: -50px;">
+
+<div class="side-panel reveal" style="width: 280px !important; margin-top: 80px !important; margin-bottom: -120px !important; background: rgba(12, 12, 16, 0.98) !important; border: 2px solid #ff003c !important; border-radius: 20px !important; padding: 25px 20px !important; color: #ffffff !important; box-shadow: 0 0 30px rgba(255, 0, 60, 0.5) !important; backdrop-filter: blur(12px) !important; position: relative !important; overflow: hidden !important; font-family: 'Segoe UI', sans-serif !important;">
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: #ff003c; box-shadow: 0 0 12px #ff003c;"></div>
+    <div style="display: flex; align-items: center; margin-bottom: 12px;">
+        <span style="font-size: 20px; margin-right: 8px; filter: drop-shadow(0 0 8px rgba(255,0,60,0.9));">💡</span>
+        <h3 style="color: #ff003c; font-size: 0.95rem; margin: 0; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; text-shadow: 0 0 10px rgba(255,0,60,0.6);">GUÍA RÁPIDA</h3>
+    </div>
+    <p style="font-size: 0.8rem; color: #e0e0e5; line-height: 1.5; margin: 0; font-weight: 500;">
+        Selecciona tu modo (Con o Sin DPI), elige la intensidad adecuada y escribe tu modelo de teléfono exacto para calibrar los valores del sistema.
+    </p>
+</div>
+<!-- TU GENERADOR PRINCIPAL -->
+<div class="main-wrapper reveal" style="flex: 1; min-width: 300px; max-width: 480px;">
+    <div class="container" style="border: 2px solid #ff003c; box-shadow: 0 0 30px rgba(255, 0, 60, 0.4); position: relative; width: 100%; background: #000000; padding: 25px 20px; border-radius: 20px; box-sizing: border-box; overflow: hidden; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;">
+        
+        <!-- Selector de Modo -->
+        <div class="mode-selector" style="display: flex; gap: 8px; margin-top: -10px; margin-bottom: 10px;">
+            <button class="mode-btn active" id="btnWith" onclick="changeMode(true)" style="background: #ff003c; color: #fff; flex: 1; border: 1px solid #ffffff; padding: 8px; border-radius: 8px; cursor: pointer; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(255, 0, 60, 0.4);">
+                <span style="color: #000000; -webkit-text-stroke: 1px #ffffff; margin-right: 6px; font-size: 1.1em; font-weight: 900;">✗</span>
+                CON DPI
+            </button>
+            <button class="mode-btn" id="btnWithout" onclick="changeMode(false)" style="flex: 1; background: #121216; border: 1px solid #22222a; color: #a0a0ab; padding: 8px; border-radius: 8px; cursor: pointer; font-size: 0.75rem; font-weight: 600; display: flex; align-items: center; justify-content: center;">
+                <span style="color: #ff003c; -webkit-text-stroke: 1px #000000; margin-right: 6px; font-size: 1.1em; font-weight: 900;">✗</span>
+                SIN DPI
+            </button>
+        </div>
+
+        <!-- Selector de Intensidad -->
+        <div class="mode-selector" style="margin-top: 10px; grid-template-columns: 1fr 1fr 1fr; gap: 5px; display: grid;">
+            <button class="mode-btn" id="intLow" onclick="changeIntensity('low')" style="background: #121216; border: 1px solid #22222a; color: #a0a0ab; padding: 8px; border-radius: 8px; cursor: pointer; font-size: 0.75rem; font-weight: 600; display: flex; align-items: center; justify-content: center;">
+                <span style="color: #ff003c; -webkit-text-stroke: 1px #000000; margin-right: 4px; font-size: 1.1em; font-weight: 900;">✗</span>
+                BAJA
+            </button>
+            <button class="mode-btn active" id="intMid" onclick="changeIntensity('mid')" style="background: #ff003c; color: #fff; border: 1px solid #ffffff; padding: 8px; border-radius: 8px; cursor: pointer; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(255, 0, 60, 0.4);">
+                <span style="color: #000000; -webkit-text-stroke: 1px #ffffff; margin-right: 4px; font-size: 1.1em; font-weight: 900;">✗</span>
+                MEDIA
+            </button>
+            <button class="mode-btn" id="intHigh" onclick="changeIntensity('high')" style="background: #121216; border: 1px solid #22222a; color: #a0a0ab; padding: 8px; border-radius: 8px; cursor: pointer; font-size: 0.75rem; font-weight: 600; display: flex; align-items: center; justify-content: center;">
+                <span style="color: #ff003c; -webkit-text-stroke: 1px #000000; margin-right: 4px; font-size: 1.1em; font-weight: 900;">✗</span>
+                ALTA
+            </button>
+        </div>
+
+        <!-- Input y Botones -->
+        <div class="input-section" style="display: flex; gap: 8px; margin-top: 12px; align-items: center;">
+            <div style="position: relative; flex: 2; display: flex; align-items: center;">
+                <svg style="position: absolute; left: 10px; width: 16px; height: 16px; color: #a0a0ab; pointer-events: none;" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"/>
+                </svg>
+                <input type="text" id="phone" placeholder="MODELO AQUÍ..." oninput="onInputHandler()" style="width: 100%; background: #121216; border: 1px solid #22222a; padding: 10px 10px 10px 32px; color: #fff; border-radius: 8px; outline: none; font-size: 0.85rem; box-sizing: border-box;">
+                <datalist id="deviceList"></datalist>
+            </div>
+            
+            <button class="main-btn" onclick="process()" style="background: linear-gradient(135deg, #ff003c, #990024); color: #fff; border: none; padding: 10px 12px; border-radius: 8px; font-weight: 800; cursor: pointer; box-shadow: 0 0 15px rgba(255, 0, 60, 0.4); text-transform: uppercase; font-size: 0.75rem; white-space: nowrap; display: flex; align-items: center; justify-content: center;">
+                <svg style="width: 14px; height: 14px; margin-right: 5px;" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,11V7H13V11H17V13H13V17H11V13H7V11H11Z"/>
+                </svg>
+                CALIBRAR
+            </button>
+
+            <button class="mode-btn" id="btnPremium" onclick="activatePremium()" style="background: #121216; border: 1px solid #ffcc00; color: #ffcc00; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 0 10px rgba(255, 204, 0, 0.2); flex-shrink: 0; padding: 0 10px; height: 38px; font-size: 0.75rem; font-weight: 700;">
+                <span style="font-size: 14px; margin-right: 4px;">👑</span>PREMIUM
+            </button>
+        </div>
+        
+        <div id="error-msg" style="display:none; color: #ff003c; text-align: center; font-size: 0.8rem; margin-top: 6px; font-weight: 700;">DISPOSITIVO NO RECONOCIDO</div>
+        
+        <!-- Resultados Parciales -->
+        <div id="results" style="margin-top: 15px;">
+            <!-- GENERAL -->
+            <div class="sensi-item" id="item1" style="display:none; margin-bottom: 10px;">
+                <div class="info" style="display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; font-weight: 700; color: #fff;">
+                    <span><span style="color: #ff003c; margin-right: 4px; font-size: 1.1em;">✗</span>GENERAL</span>
+                    <span id="v1" style="color: #fff; text-shadow: 0 0 8px rgba(255,0,60,0.6);">0</span>
+                </div>
+                <div class="track" style="height: 6px; background: #121216; border-radius: 4px; overflow: hidden; margin-top: 4px; border: 1px solid #22222a;"><div class="fill" id="f1" style="height: 100%; background: linear-gradient(90deg, #990024, #ff003c); width: 0%; transition: width 1s ease; box-shadow: 0 0 10px #ff003c;"></div></div>
+            </div>
+
+            <!-- PUNTO ROJO -->
+            <div class="sensi-item" id="item2" style="display:none; margin-bottom: 10px;">
+                <div class="info" style="display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; font-weight: 700; color: #fff;">
+                    <span><span style="color: #ff003c; margin-right: 4px; font-size: 1.1em;">✗</span>PUNTO ROJO</span>
+                    <span id="v2" style="color: #fff; text-shadow: 0 0 8px rgba(255,0,60,0.6);">0</span>
+                </div>
+                <div class="track" style="height: 6px; background: #121216; border-radius: 4px; overflow: hidden; margin-top: 4px; border: 1px solid #22222a;"><div class="fill" id="f2" style="height: 100%; background: linear-gradient(90deg, #990024, #ff003c); width: 0%; transition: width 1s ease;"></div></div>
+            </div>
+
+            <!-- MIRA 2X -->
+            <div class="sensi-item" id="item3" style="display:none; margin-bottom: 10px;">
+                <div class="info" style="display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; font-weight: 700; color: #fff;">
+                    <span><span style="color: #ff003c; margin-right: 4px; font-size: 1.1em;">✗</span>MIRA 2X</span>
+                    <span id="v3" style="color: #fff; text-shadow: 0 0 8px rgba(255,0,60,0.6);">0</span>
+                </div>
+                <div class="track" style="height: 6px; background: #121216; border-radius: 4px; overflow: hidden; margin-top: 4px; border: 1px solid #22222a;"><div class="fill" id="f3" style="height: 100%; background: linear-gradient(90deg, #990024, #ff003c); width: 0%; transition: width 1s ease;"></div></div>
+            </div><!-- MIRA 4X -->
+    <div class="sensi-item" id="item4" style="display:none; margin-bottom: 10px;">
+        <div class="info" style="display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; font-weight: 700; color: #fff;">
+            <span><span style="color: #ff003c; margin-right: 4px; font-size: 1.1em;">✗</span>MIRA 4X</span>
+            <span id="v4" style="color: #fff; text-shadow: 0 0 8px rgba(255,0,60,0.6);">0</span>
+        </div>
+        <div class="track" style="height: 6px; background: #121216; border-radius: 4px; overflow: hidden; margin-top: 4px; border: 1px solid #22222a;"><div class="fill" id="f4" style="height: 100%; background: linear-gradient(90deg, #990024, #ff003c); width: 0%; transition: width 1s ease;"></div></div>
+    </div>
+
+    <!-- FRANCOTIRADOR -->
+    <div class="sensi-item" id="item5" style="display:none; margin-bottom: 10px;">
+        <div class="info" style="display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; font-weight: 700; color: #fff;">
+            <span><span style="color: #ff003c; margin-right: 4px; font-size: 1.1em;">✗</span>FRANCOTIRADOR</span>
+            <span id="v5" style="color: #fff; text-shadow: 0 0 8px rgba(255,0,60,0.6);">0</span>
+        </div>
+        <div class="track" style="height: 6px; background: #121216; border-radius: 4px; overflow: hidden; margin-top: 4px; border: 1px solid #22222a;"><div class="fill" id="f5" style="height: 100%; background: linear-gradient(90deg, #990024, #ff003c); width: 0%; transition: width 1s ease;"></div></div>
+    </div>
+
+    <!-- CÁMARA 360 -->
+    <div class="sensi-item" id="item6" style="display:none; margin-bottom: 12px;">
+        <div class="info" style="display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; font-weight: 700; color: #fff;">
+            <span><span style="color: #ff003c; margin-right: 4px; font-size: 1.1em;">✗</span>CÁMARA 360</span>
+            <span id="v6" style="color: #fff; text-shadow: 0 0 8px rgba(255,0,60,0.6);">0</span>
+        </div>
+        <div class="track" style="height: 6px; background: #121216; border-radius: 4px; overflow: hidden; margin-top: 4px; border: 1px solid #22222a;"><div class="fill" id="f6" style="height: 100%; background: linear-gradient(90deg, #990024, #ff003c); width: 0%; transition: width 1s ease;"></div></div>
+    </div>
+
+    <!-- Botón y DPI extras -->
+    <div class="extra-data" id="extraBox" style="display:none; gap: 10px; width: 100%; justify-content: center; padding: 0; margin-top: 15px; display: flex;">
+        <div class="box" style="display: flex; align-items: center; justify-content: center; gap: 10px; background: #121216; border: 1px solid #ff003c; padding: 12px 10px; border-radius: 12px; flex: 1; box-shadow: 0 0 15px rgba(255, 0, 60, 0.2);">
+            <img src="https://i.postimg.cc/RhJ5wzyT/Gemini-Generated-Image-lb8r1flb8r1flb8r-removebg-preview.png" style="width:45px; height:45px; object-fit: contain; filter: drop-shadow(0 0 5px rgba(255,0,60,0.5));" alt="Botón">
+            <div style="display: flex; flex-direction: column; align-items: flex-start;">
+                <span style="font-size: 0.85rem; color: #ff003c; font-weight: 800;">BOTÓN</span>
+                <b id="resBtn" style="font-size: 1.3rem; color: #fff; font-weight: 900;">--</b>
+            </div>
+        </div>
+
+        <div class="box" id="dpiContainer" style="display: flex; align-items: center; justify-content: center; gap: 10px; background: #121216; border: 1px solid #ff003c; padding: 12px 10px; border-radius: 12px; flex: 1; box-shadow: 0 0 15px rgba(255, 0, 60, 0.2);">
+            <img src="https://i.postimg.cc/cLkFGkLY/Gemini-Generated-Image-u8s0i0u8s0i0u8s0-removebg-preview.png" style="width:45px; height:45px; object-fit: contain; filter: drop-shadow(0 0 5px rgba(255,0,60,0.5));" alt="DPI">
+            <div style="display: flex; flex-direction: column; align-items: flex-start;">
+                <span style="font-size: 0.85rem; color: #ff003c; font-weight: 800;">DPI</span>
+                <b id="resDpi" style="font-size: 1.3rem; color: #ffffff; font-weight: 900;">--</b>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="side-panel reveal" style="width: 280px !important; margin-top: -60px !important; background: rgba(12, 12, 16, 0.98) !important; border: 2px solid #ff003c !important; border-radius: 20px !important; padding: 25px 20px !important; color: #ffffff !important; box-shadow: 0 0 30px rgba(255, 0, 60, 0.5) !important; backdrop-filter: blur(12px) !important; position: relative !important; overflow: hidden !important; font-family: 'Segoe UI', sans-serif !important;">
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: #ff003c; box-shadow: 0 0 12px #ff003c;"></div>
+    <div style="display: flex; align-items: center; margin-bottom: 12px;">
+        <span style="font-size: 20px; margin-right: 8px; filter: drop-shadow(0 0 8px rgba(255,204,0,0.9));">⭐</span>
+        <h3 style="color: #ffcc00; font-size: 0.95rem; margin: 0; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; text-shadow: 0 0 10px rgba(255,204,0,0.6);">MODO PRO</h3>
+    </div>
+    <p style="font-size: 0.8rem; color: #e0e0e5; line-height: 1.5; margin: 0; font-weight: 500;">
+        Los dispositivos de gama alta restringen su DPI automáticamente para evitar saltos bruscos y mantener la estabilidad en el juego.
+    </p>
+</div>
+
+</div>
+
+<!-- MODALES DE ANIMACIÓN -->
+
+<!-- MODAL 1: CALIBRADA (ROJO VIP) -->
+<div id="impacto-vip" style="display:none;"> 
+    <div id="flash-v"></div>
+    <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 5px;">
+        <img src="https://i.postimg.cc/T15yW3hP/Whats-App-Image-2026-09-02-at-11-04-02-AM-(1).jpg" alt="Logo" style="width: 28px; height: 28px; border-radius: 50%; border: 2px solid #ff003c; object-fit: cover; margin-right: 8px; box-shadow: 0 0 10px rgba(255, 0, 60, 0.6);">
+        <span class="vip-sub" style="margin: 0; font-weight: 800; font-family: 'Segoe UI', sans-serif;">
+            SENSI <span style="color: #ff003c; -webkit-text-stroke: 1px #ffffff; margin: 0 2px;">✗</span> PRO
+        </span>
+    </div>
+    <h1 id="txt-v" style="font-family: 'Segoe UI', sans-serif; font-weight: 900; margin: 0;">CALIBRADA</h1>
+</div>
+
+<!-- MODAL 2: PREMIUM ACTIVA (DORADO) -->
+<div id="impacto-premium" style="display: none; position: fixed !important; top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) !important; z-index: 99999; text-align: center; pointer-events: none;"> 
+    <div style="background: rgba(10, 10, 12, 0.95); border: 2px solid #ffcc00; padding: 25px 35px; border-radius: 16px; box-shadow: 0 0 35px rgba(255, 204, 0, 0.45); display: flex; flex-direction: column; align-items: center;">
+        <div style="display: flex; align-items: center; margin-bottom: 8px;">
+            <img src="https://i.postimg.cc/T15yW3hP/Whats-App-Image-2026-09-02-at-11-04-02-AM-(1).jpg" alt="Logo" style="width: 32px; height: 32px; border-radius: 50%; border: 2px solid #ffcc00; object-fit: cover; margin-right: 8px; box-shadow: 0 0 12px rgba(255, 204, 0, 0.7);">
+            <span style="color: #ffcc00; font-weight: 800; font-size: 1.1rem; text-shadow: 0 0 10px rgba(255, 204, 0, 0.8); font-family: 'Segoe UI', sans-serif;">
+                SENSI <span style="color: #ffffff; margin: 0 3px; font-size: 1.1em; text-shadow: 0 0 8px #ffffff;">✗</span> PRO
+            </span>
+        </div>
+        <h1 id="txt-premium" style="color: #ffcc00; font-size: 2.2rem; font-weight: 900; margin: 0; font-family: 'Segoe UI', sans-serif; text-shadow: 0 0 18px rgba(255, 204, 0, 0.9); text-transform: uppercase; letter-spacing: 1px;">
+            PREMIUM ACTIVA
+        </h1>
+    </div>
+</div>
+<section class="reveal" style="width: 100%; max-width: 1000px; margin: 40px auto 40px auto; padding: 0 20px; text-align: center; box-sizing: border-box; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;margin-top: -10PX;">
+    <div style="display: inline-block; background: rgba(255,204,0,0.12); color: #ffcc00; font-size: 0.75rem; font-weight: 800; padding: 6px 16px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; border: 1px solid rgba(255,204,0,0.4);">
+        CONSEJOS DE RENDIMIENTO
+    </div>
+    <h2 style="color: #ffffff; font-size: 1.8rem; font-weight: 800; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.5px;">
+        RECOMENDACIONES PARA EL <span style="color: #ffcc00;">USO COMPETITIVO</span>
+    </h2>
+    <p style="color: #b0b0b5; font-size: 0.9rem; line-height: 1.6; max-width: 750px; margin: 0 auto; font-weight: 500;">
+        Asegúrate de limpiar la pantalla de tu móvil antes de aplicar los cambios. Tras calibrar, reinicia el juego para que el motor gráfico procese de manera estable los nuevos coeficientes de sensibilidad.
+    </p>
+</section>
+<!-- FOOTER -->
+<footer class="reveal">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h4>ninoproff</h4>
+            <p>Streamer oficial enfocado en traer la mejor configuración, salas privadas y torneos diarios para elevar tu nivel competitivo.</p>
+            <div class="social-icons">
+                <a href="https://www.youtube.com/@ninoproff" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.tiktok.com/@ninoproff" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Navegación</h4>
+            <ul class="footer-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html#caracteristicas">Ventajas</a></li>
+                <li><a href="index.html#comunidad">Comunidad</a></li>
+                <li><a href="generador.html">Generador VIP</a></li>
+            </ul>
+        </div>
+        <div class="footer-col footer-community">
+            <h4>COMUNIDAD</h4>
+            <p>Únete a nuestro grupo oficial en TikTok para enterarte de salas privadas, torneos diarios y calibraciones exclusivas.</p>
+            <a href="https://www.tiktok.com/@ninoproff" target="_blank" class="community-btn">
+                <i class="fa-brands fa-tiktok"></i> UNETE A TEAM PROS
+            </a>
+        </div>
+        <div class="footer-col">
+            <h4>Estado del Servicio</h4>
+            <p><i class="fa-solid fa-circle" style="color: #00ff66; font-size: 0.8rem;"></i> Algoritmo Actualizado (2026)</p>
+            <p style="margin-top: 10px;"><i class="fa-solid fa-shield-halved" style="color: var(--primary);"></i> 100% Anti-Ban Seguro</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 ninoproff. Todos los derechos reservados. Este sitio web es una herramienta de optimización independiente creada para la comunidad de jugadores y creadores de contenido. Todas las marcas registradas, nombres de juegos y logotipos pertenecen exclusivamente a sus respectivos propietarios y se utilizan únicamente con fines informativos y de compatibilidad técnica.</p>
+    </div>
+</footer>
+<script>
+let currentModeWithDPI = true;
+let currentIntensity = 'mid';
+
+// --- EL GRAN DICCIONARIO DE DISPOSITIVOS MÓVILES (VERSIÓN 2026) ---
+const fullDeviceDB = [
+  
+];
+
+const validBrands = [
+    "Alcatel", "Apple", "Asus", "Black Shark", "BLU", "Cubot", "Doogee", "Google", 
+    "Honor", "HTC", "Huawei", "Infinix", "iTel", "Kyocera", "Lava", "Lenovo", "LG", 
+    "LifeiPhone", "Meizu", "Micromax", "Motorola", "Nokia", "Nubia", "OnePlus", "Oppo", 
+    "Poco", "Realme", "RedMagic", "Redmi", "Samsung", "Sharp", "Siragon", "Sony", 
+    "TCL", "Tecno", "Ulefone", "Umidigi", "Vivo", "Wiko", "Xiaomi", "ZTE"
+].sort();
+// INICIALIZACIÓN
+const phoneInput = document.getElementById('phone');
+const dataListContainer = document.getElementById('deviceList');
+const brandsList = document.getElementById('brandsList');
+
+fullDeviceDB.sort().forEach(device => {
+    const option = document.createElement('option');
+    option.value = device;
+    dataListContainer.appendChild(option);
+});
+
+// --- FUNCIONES DE INTERFAZ ---
+function onInputHandler() {
+    clearError();
+    const val = phoneInput.value;
+    if (val.length >= 1) phoneInput.setAttribute('list', 'deviceList');
+    else phoneInput.removeAttribute('list');
+    // Se quitó la actualización automática al escribir
+}
+
+function toggleBrands() {
+    const content = document.getElementById('brandsContent');
+    const arrow = document.getElementById('brandArrow');
+    content.style.maxHeight = (content.style.maxHeight === "0px" || content.style.maxHeight === "") ? "250px" : "0px";
+    arrow.innerText = content.style.maxHeight === "0px" ? "▼" : "▲";
+}
+
+if (brandsList) {
+    validBrands.forEach(brand => {
+        const div = document.createElement('div');
+        div.style.padding = "12px";
+        div.style.borderBottom = "1px solid rgba(255,255,255,0.05)";
+        div.style.color = "#eee";
+        div.style.cursor = "pointer";
+        div.style.fontSize = "0.85rem";
+        div.innerText = "➤ " + brand.toUpperCase();
+        div.onclick = () => { 
+            phoneInput.value = brand.toUpperCase(); 
+            toggleBrands(); 
+            // Se quitó la actualización automática al seleccionar marca
+        };
+        brandsList.appendChild(div);
+    });
+}
+function changeMode(mode) {
+    currentModeWithDPI = mode;
+    const btnWith = document.getElementById('btnWith');
+    const btnWithout = document.getElementById('btnWithout');
+    if (mode) {
+        btnWith.style.background = "#ff003c"; 
+        btnWith.style.color = "#fff";
+        btnWith.style.boxShadow = "0 0 15px rgba(255, 0, 60, 0.4)";
+        btnWithout.style.background = "#121216"; 
+        btnWithout.style.color = "#a0a0ab";
+        btnWithout.style.boxShadow = "none";
+    } else {
+        btnWithout.style.background = "#ff003c"; 
+        btnWithout.style.color = "#fff";
+        btnWithout.style.boxShadow = "0 0 15px rgba(255, 0, 60, 0.4)";
+        btnWith.style.background = "#121216"; 
+        btnWith.style.color = "#a0a0ab";
+        btnWith.style.boxShadow = "none";
+    }
+}
+
+function changeIntensity(intensity) {
+    currentIntensity = intensity;
+    const btns = { low: document.getElementById('intLow'), mid: document.getElementById('intMid'), high: document.getElementById('intHigh') };
+    for (let key in btns) {
+        if (key === intensity) {
+            btns[key].style.background = "#ff003c";
+            btns[key].style.color = "#fff";
+            btns[key].style.boxShadow = "0 0 15px rgba(255, 0, 60, 0.4)";
+        } else {
+            btns[key].style.background = "#121216";
+            btns[key].style.color = "#a0a0ab";
+            btns[key].style.boxShadow = "none";
+        }
+    }
+}
+function clearError() { document.getElementById('error-msg').style.display = 'none'; }
+
+
+// --- MOTOR DE CÁLCULO CORE ---
+function calculateSensi(phone, withDelay) {
+    let seed = 0;
+    for (let i = 0; i < phone.length; i++) seed += phone.charCodeAt(i) * (i + 1);
+
+    const dev = phone.toLowerCase();
+    const isApple = dev.includes("iphone") || dev.includes("ipad") || dev.includes("lifeiphone");
+
+   let dpiFinal;
+    if (isApple) {
+        dpiFinal = "N/A";
+    } else {
+        const devLower = phone.toLowerCase();
+        
+        // Extraer el número del modelo (ej: Redmi 17 -> 17)
+        const matchNumero = devLower.match(/\d+/);
+        const numModelo = matchNumero ? parseInt(matchNumero[0], 10) : 10;
+
+        // --- 1. GAMA ALTA / GAMING / DISPOSITIVOS MODERNOS (Máximo 399) ---
+        const esGamaAltaOGaming = devLower.includes("redmagic") || 
+                                   devLower.includes("black shark") || 
+                                   devLower.includes("rog") || 
+                                   devLower.includes("ultra") || 
+                                   devLower.includes("pro max") || 
+                                   devLower.includes("iphone") || 
+                                   devLower.includes("samsung s") || 
+                                   devLower.includes("z fold") || 
+                                   devLower.includes("z flip") ||
+                                   devLower.includes("pixel") ||
+                                   devLower.includes("oneplus") ||
+                                   devLower.includes("nothing");
+
+        const esXiaomiRedmiModerno = (devLower.includes("xiaomi") && numModelo >= 12) ||
+                                     ((devLower.includes("redmi") || devLower.includes("poco")) && numModelo >= 13);
+
+        if (esGamaAltaOGaming || esXiaomiRedmiModerno) {
+            // Gama alta: Invertido (Más baja la sensi = mayor DPI, pero respetando el límite de 399)
+            if (currentIntensity === 'low') {
+                dpiFinal = 399; // Máximo permitido para gama alta en baja
+            } else if (currentIntensity === 'high') {
+                dpiFinal = 350; // Más controlado en alta
+            } else {
+                dpiFinal = 375; // Equilibrado en media
+            }
+        } 
+        else {
+            // --- 2. GAMA BAJA / ANTIGUOS QUE SÍ NECESITAN DPI ALTO ---
+            // Invertido: Sensi BAJA = Mayor DPI; Sensi ALTA = Menor DPI
+            const esInfinixTecno = devLower.includes("infinix") || devLower.includes("tecno");
+            const esSamsungBudget = devLower.includes("samsung a") || devLower.includes("galaxy a");
+
+            if (esInfinixTecno) {
+                if (currentIntensity === 'low') dpiFinal = 580;
+                else if (currentIntensity === 'high') dpiFinal = 500;
+                else dpiFinal = 540;
+            } 
+            else if (esSamsungBudget && numModelo <= 32) {
+                if (currentIntensity === 'low') dpiFinal = 560;
+                else if (currentIntensity === 'high') dpiFinal = 480;
+                else dpiFinal = 520;
+            } 
+            else {
+                // Resto de modelos de gama baja / anteriores (Ej: Redmi antiguos)
+                if (currentIntensity === 'low') dpiFinal = 575;
+                else if (currentIntensity === 'high') dpiFinal = 490;
+                else dpiFinal = 535;
+            }
+        }
+    }
+    let minS, maxS;
+    if (currentIntensity === 'low') { minS = 85; maxS = 105; } 
+    else if (currentIntensity === 'high') { minS = 170; maxS = 190; } 
+    else { minS = 120; maxS = 155; }
+
+    let compensacion = !currentModeWithDPI ? 18 : 0;
+
+    const genV = (off) => {
+        let base = Math.floor(minS + ((seed + off) % (maxS - minS + 1)));
+        let final = base + compensacion;
+        return Math.min(200, final);
+    };
+
+    const baseValues = [genV(7), genV(17), genV(27), genV(37), Math.max(10, Math.floor(genV(42) * 0.55)), genV(47)];
+
+    const brandLogic = {
+        "REDMAGIC": { boost: 1.01, offset: 5 }, "BLACK SHARK": { boost: 1.12, offset: 4 }, "ASUS": { boost: 1.10, offset: 3 },
+        "INFINIX": { boost: 1.02, offset: 2 }, "TECNO": { boost: 1.02, offset: 7 }, "ITEL": { boost: 1.02, offset: 10 },
+        "POCO": { boost: 1.08, offset: 2 }, "XIAOMI": { boost: 1.06, offset: 2 }, "REDMI": { boost: 1.05, offset: 1 }, "REALME": { boost: 1.07, offset: 3 },
+        "SAMSUNG": { boost: 1.03, offset: -2 }, "IPHONE": { boost: 0.96, offset: -5 }, "IPAD": { boost: 0.94, offset: -6 },
+        "MOTOROLA": { boost: 1.02, offset: 0 }, "HUAWEI": { boost: 1.01, offset: 0 }, "HONOR": { boost: 1.01, offset: 0 },
+        "OPPO": { boost: 1.04, offset: 1 }, "VIVO": { boost: 1.04, offset: 1 }, "ONEPLUS": { boost: 1.05, offset: 2 }, "SIRAGON": { boost: 1.06, offset: 4 }
+    };
+
+    let config = { boost: 1.0, offset: 0 };
+    const devUpper = phone.toUpperCase();
+    for (const b in brandLogic) { if (devUpper.includes(b)) { config = brandLogic[b]; break; } }
+
+    baseValues.forEach((val, i) => {
+        const idx = i + 1;
+        const item = document.getElementById('item' + idx); 
+        const fill = document.getElementById('f' + idx);
+        const valSpan = document.getElementById('v' + idx);
+        
+       let finalVal = Math.round((val * config.boost) + config.offset);
+        if (!currentModeWithDPI) finalVal += 5;
+
+        // Si el modo premium está activo, modifica un 3% extra y cambia colores a dorado
+        if (isPremiumActive) {
+            finalVal = Math.round(finalVal * 1.03);
+        }
+
+        finalVal = Math.max(10, Math.min(200, finalVal));
+
+        if (item) item.style.display = 'block'; 
+
+        // Aplicar color dorado si es premium, o rojo neón por defecto
+        const activeColor = isPremiumActive ? "#ffcc00" : "linear-gradient(90deg, #990024, #ff003c)";
+        const activeShadow = isPremiumActive ? "0 0 10px #ffcc00" : "0 0 10px #ff003c";
+        
+        if (fill) {
+            fill.style.background = activeColor;
+            fill.style.boxShadow = activeShadow;
+        }
+
+        if(withDelay) {
+            if (fill) fill.style.width = "0%"; 
+            setTimeout(() => {
+                if (valSpan) valSpan.innerText = finalVal;
+                if (fill) fill.style.width = (finalVal / 200 * 100) + "%";
+            }, i * 65);
+        } else {
+            if (valSpan) valSpan.innerText = finalVal;
+            if (fill) fill.style.width = (finalVal / 200 * 100) + "%";
+        }
+    });
+
+    document.getElementById('extraBox').style.display = 'flex';
+    document.getElementById('resBtn').innerText = (41 + (seed % 15)) + "%";
+    document.getElementById('resDpi').innerText = dpiFinal;
+    document.getElementById('dpiContainer').style.visibility = currentModeWithDPI ? 'visible' : 'hidden';
+}
+
+// --- MOTOR VIP (ANIMACIÓN Y AUDIO) ---
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+function playFatalSound() {
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    const now = audioCtx.currentTime;
+    for(let i=0; i<3; i++) {
+        const osc = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(1500, now + (i * 0.1));
+        g.gain.setValueAtTime(0, now + (i * 0.1));
+        g.gain.linearRampToValueAtTime(0.1, now + (i * 0.1) + 0.02);
+        g.gain.linearRampToValueAtTime(0, now + (i * 0.1) + 0.08);
+        osc.connect(g); g.connect(audioCtx.destination);
+        osc.start(now + (i * 0.1)); osc.stop(now + (i * 0.1) + 0.1);
+    }
+    const osc2 = audioCtx.createOscillator();
+    const g2 = audioCtx.createGain();
+    osc2.type = 'square';
+    osc2.frequency.setValueAtTime(60, now + 0.3);
+    osc2.frequency.exponentialRampToValueAtTime(20, now + 1.2);
+    g2.gain.setValueAtTime(0.4, now + 0.3);
+    g2.gain.exponentialRampToValueAtTime(0.01, now + 1.2);
+    osc2.connect(g2); g2.connect(audioCtx.destination);
+    osc2.start(now + 0.3); osc2.stop(now + 1.2);
+}function mostrarPerfecta() {
+    const input = document.getElementById('phone');
+    const dispositivo = input ? input.value.trim() : "";
+    const errorMsg = document.getElementById('error-msg');
+    const banner = document.getElementById('impacto-vip');
+
+    // 1. VERIFICACIÓN CRÍTICAMENTE ESTRICTA: 
+    // Si el dispositivo está vacío, es inválido, o el mensaje de error está activo, BLOQUEAR TOTALMENTE.
+    if (!dispositivo || !isValidDevice(dispositivo) || (errorMsg && errorMsg.style.display === 'block')) {
+        if (banner) banner.style.display = 'none';
+        if (errorMsg) errorMsg.style.display = 'block';
+        return; // SE SALE DE LA FUNCIÓN AL INSTANTE Y NO MUESTRA NADA
+    }
+
+    const txt = document.getElementById('txt-v');
+    const flash = document.getElementById('flash-v');
+    if (!banner || !txt) return;
+
+    playFatalSound();
+    
+    banner.style.display = 'block';
+    if (flash) flash.style.opacity = '0.5';
+    
+    txt.innerText = "CALIBRADA";
+    txt.style.opacity = '1';
+    
+    let shakes = 0;
+    const interval = setInterval(() => {
+        txt.style.transform = `translate(${Math.random()*8-4}px, ${Math.random()*8-4}px) scale(1.2)`;
+        if (shakes++ > 12) {
+            clearInterval(interval);
+            txt.style.transform = 'scale(1)';
+            if (flash) flash.style.opacity = '0';
+        }
+    }, 30);
+
+    setTimeout(() => {
+        txt.style.transition = "transform 0.3s, opacity 0.4s";
+        txt.style.transform = 'scale(2.5)';
+        txt.style.opacity = '0';
+        
+        setTimeout(() => { 
+            banner.style.display = 'none'; 
+            txt.style.transition = "none"; 
+        }, 400);
+    }, 2200);
+}
+
+// EVENTOS DE ENTRADA MANUAL
+phoneInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        if (phoneInput.value.trim() !== "") { process(); mostrarPerfecta(); }
+    }
+});
+
+const btnMain = document.querySelector('.main-btn');
+if (btnMain) {
+    btnMain.addEventListener('click', () => {
+        if (phoneInput.value.trim() !== "") { process(); setTimeout(mostrarPerfecta, 50); }
+    });
+}
+// --- MODO SENSI PREMIUM DORADO ---
+let isPremiumActive = false;
+
+function activatePremium() {
+    isPremiumActive = true;
+    
+    const btnPrem = document.getElementById('btnPremium');
+    if(btnPrem) {
+        btnPrem.style.background = "#ffcc00";
+        btnPrem.style.color = "#000";
+        btnPrem.style.boxShadow = "0 0 15px rgba(255, 204, 0, 0.6)";
+    }
+
+    if(isValidDevice(phoneInput.value)) {
+        calculateSensi(phoneInput.value, true); 
+        mostrarPremiumAnimacion(); // <--- LLAMA A LA NUEVA ANIMACIÓN DORADA
+    } else {
+        document.getElementById('error-msg').style.display = 'block';
+    }
+}
+
+// Modificación para que al presionar Baja, Media o Alta se apague el modo premium dorado
+const originalChangeIntensity = changeIntensity;
+changeIntensity = function(intensity) {
+    isPremiumActive = false;
+    const btnPrem = document.getElementById('btnPremium');
+    if(btnPrem) {
+        btnPrem.style.background = "#121216";
+        btnPrem.style.color = "#ffcc00";
+        btnPrem.style.boxShadow = "0 0 10px rgba(255, 204, 0, 0.2)";
+    }
+    originalChangeIntensity(intensity);
+};
+// --- ANIMACIÓN EMERGENTE PREMIUM CORREGIDA ---
+// --- ANIMACIÓN EMERGENTE PREMIUM CORREGIDA ---
+function mostrarPremiumAnimacion() {
+    const banner = document.getElementById('impacto-premium');
+    const txt = document.getElementById('txt-premium');
+    if (!banner || !txt) return;
+
+    playFatalSound(); // Sonido épico
+    
+    // Mostrar recuadro centrado
+    banner.style.display = 'block';
+    
+    txt.innerText = "PREMIUN ACTIVA";
+    txt.style.opacity = '1';
+    
+    let shakes = 0;
+    const interval = setInterval(() => {
+        txt.style.transform = `translate(${Math.random()*8-4}px, ${Math.random()*8-4}px) scale(1.2)`;
+        if (shakes++ > 12) {
+            clearInterval(interval);
+            txt.style.transform = 'scale(1)';
+        }
+    }, 30);
+
+    setTimeout(() => {
+        txt.style.transition = "transform 0.3s, opacity 0.4s";
+        txt.style.transform = 'scale(2.5)';
+        txt.style.opacity = '0';
+        
+        setTimeout(() => { 
+            banner.style.display = 'none'; 
+            txt.style.transition = "none"; 
+        }, 400);
+    }, 2200);
+}
+// --- BLOQUE FINAL ANTIFALLOS PARA EL BOTÓN CALIBRAR ---
+window.addEventListener('DOMContentLoaded', () => {
+    const btnCalibrar = document.querySelector('.main-btn'); // O ponle un id a tu botón y búscalo aquí
+    if (btnCalibrar) {
+        btnCalibrar.removeAttribute('onclick'); // Borra cualquier onclick viejo del HTML
+        btnCalibrar.addEventListener('click', (e) => {
+            e.preventDefault();
+            const input = document.getElementById('phone');
+            const dispositivo = input ? input.value.trim() : "";
+            const errorMsg = document.getElementById('error-msg');
+            const bannerVip = document.getElementById('impacto-vip');
+            const bannerPremium = document.getElementById('impacto-premium');
+
+            // Apagar todo
+            if (bannerVip) bannerVip.style.display = 'none';
+            if (bannerPremium) bannerPremium.style.display = 'none';
+            if (errorMsg) errorMsg.style.display = 'none';
+
+            // Lista de marcas permitidas
+            const permitidos = ["redmagic", "asus", "blu", "iphone", "samsung", "xiaomi", "poco", "infinix", "tecno", "motorola", "oppo", "vivo", "oneplus", "huawei", "honor", "realme", "siragon"];
+            const esValido = permitidos.some(marca => dispositivo.toLowerCase().includes(marca));
+
+            // Si está mal o vacío -> Muestra error y SE DETIENE (Cero animación)
+            if (!dispositivo || !esValido) {
+                if (errorMsg) errorMsg.style.display = 'block';
+                return; 
+            }
+
+            // Si está bien -> Calcula y muestra la animación normal
+            isPremiumActive = false;
+            if (typeof calculateSensi === 'function') {
+                calculateSensi(dispositivo, false);
+            }
+            if (bannerVip) {
+                bannerVip.style.display = 'block';
+                if (typeof mostrarPerfecta === 'function') {
+                    mostrarPerfecta();
+                }
+            }
+        });
+    }
+});
+// --- 1. DICCIONARIO COMPLETO DE TODAS LAS MARCAS ---
+const BRAND_RULES = [
+    { brand: "REDMI NOTE" },
+    { brand: "REDMI" },
+    { brand: "IPHONE" },
+    { brand: "IPAD" },
+    { brand: "LIFEIPHONE" },
+    { brand: "POCO" },
+    { brand: "XIAOMI" },
+    { brand: "SAMSUNG" },
+    { brand: "GALAXY" },
+    { brand: "MOTOROLA" },
+    { brand: "MOTO" },
+    { brand: "REDMAGIC" },
+    { brand: "NUBIA" },
+    { brand: "ASUS" },
+    { brand: "ROG" },
+    { brand: "INFINIX" },
+    { brand: "TECNO" },
+    { brand: "REALME" },
+    { brand: "HONOR" },
+    { brand: "HUAWEI" },
+    { brand: "OPPO" },
+    { brand: "VIVO" },
+    { brand: "IQOO" },
+    { brand: "ONEPLUS" },
+    { brand: "PIXEL" },
+    { brand: "GOOGLE" },
+    { brand: "NOTHING" },
+    { brand: "BLACK SHARK" },
+    { brand: "LENOVO" },
+    { brand: "ZTE" },
+    { brand: "ALCATEL" },
+    { brand: "BLU" },
+    { brand: "SIRAGON" },
+    { brand: "TCL" },
+    { brand: "LG" },
+    { brand: "SONY" },
+    { brand: "NOKIA" },
+    { brand: "MEIZU" },
+    { brand: "BLACKVIEW" },
+    { brand: "CUBOT" },
+    { brand: "DOOGEE" },
+    { brand: "ULEFONE" },
+    { brand: "UMIDIGI" },
+    { brand: "ITEL" },
+    { brand: "HTC" },
+    { brand: "SHARP" },
+    { brand: "PANASONIC" },
+    { brand: "PHILIPS" },
+    { brand: "AGM" },
+    { brand: "CAT" },
+    { brand: "TINNO" },
+    { brand: "COOLPAD" },
+    { brand: "LEECO" },
+    { brand: "GIONEE" },
+    { brand: "MICROMAX" },
+    { brand: "LAVA" },
+    { brand: "KARBONN" },
+    { brand: "SMARTISAN" },
+    { brand: "WIKO" },
+    { brand: "NEC" },
+    { brand: "FUJITSU" },
+    { brand: "KYOCERA" }
+];
+
+// --- FUNCIÓN DE VALIDACIÓN PURA DE MARCA (SIN LÍMITES) ---
+function procesarCalibracion(inputModelo) {
+    const texto = inputModelo.trim().toUpperCase();
+    
+    if (texto.length === 0) {
+        return { general: 145, puntoRojo: 155, mira2x: 130, mira4x: 140, francotirador: 80, camara360: 150, boton: 48, dpi: 535 };
+    }
+
+    // Valida únicamente si el texto contiene alguna de las marcas registradas
+    let marcaEncontrada = BRAND_RULES.find(rule => texto.includes(rule.brand));
+    
+    // Generamos la sensibilidad libremente basada en el texto del usuario
+    let hash = 0;
+    for (let i = 0; i < texto.length; i++) {
+        hash = (hash << 5) - hash + texto.charCodeAt(i);
+        hash |= 0;
+    }
+    const positivo = Math.abs(hash);
+
+    return {
+        general: 120 + (positivo % 75),
+        puntoRojo: 125 + ((positivo >> 1) % 70),
+        mira2x: 110 + ((positivo >> 2) % 65),
+        mira4x: 115 + ((positivo >> 3) % 65),
+        francotirador: 50 + ((positivo >> 4) % 45),
+        camara360: 130 + ((positivo >> 5) % 65),
+        boton: 38 + (positivo % 28),
+        dpi: 410 + ((positivo >> 6) % 320)
+    };
+}
+function isValidDevice(device) {
+    if (!device || typeof device !== 'string') return false;
+    const input = device.toUpperCase().trim();
+    if (input.length < 2 || input.length > 30) return false;
+
+    // 1. Bloquear caracteres especiales, símbolos o secuencias excesivas de consonantes (spam/basura)
+    if (/['"`~!@#$%^&*()_+=|[\]{};:/?,.<>\\-]/.test(input)) return false;
+    if (/[BCDFGHJKLMNPQRSTVWXYZ]{5,}/.test(input)) return false;
+
+    // Ordenar reglas por longitud descendente para evaluar nombres compuestos primero (ej. "REDMI NOTE" antes de "REDMI")
+    const sortedRules = [...BRAND_RULES].sort((a, b) => b.brand.length - a.brand.length);
+    const matchedRule = sortedRules.find(r => input.includes(r.brand));
+    if (!matchedRule) return false;
+
+    // 2. Regla estricta para Motorola/Moto: Si contiene números, debe incluir una serie real permitida (G, EDGE, E, Z)
+    if ((input.includes("MOTOROLA") || input.includes("MOTO")) && /\d+/.test(input)) {
+        const tieneSerieValida = input.includes("G") || input.includes("EDGE") || input.includes("E") || input.includes("Z");
+        if (!tieneSerieValida) return false;
+    }
+
+    // 3. Validación numérica estricta: Ningún número debe superar el límite real de la marca o ser inválido
+    const numbers = input.match(/\d+/g);
+    if (numbers) {
+        for (let n of numbers) {
+            const numVal = parseInt(n, 10);
+            if (isNaN(numVal) || numVal > matchedRule.maxNum || numVal <= 0) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+// --- 3. ÚNICA FUNCIÓN PRINCIPAL PROCESS OFICIAL ---
+function process() {
+    const input = document.getElementById('phone');
+    const dispositivo = input ? input.value.trim() : "";
+    const errorMsg = document.getElementById('error-msg');
+    const bannerVip = document.getElementById('impacto-vip');
+    const bannerPremium = document.getElementById('impacto-premium');
+    const resultsContainer = document.querySelector('.results') || document.querySelector('.sensi-display');
+
+    // 1. Apagar todo de entrada
+    if (bannerVip) bannerVip.style.display = 'none';
+    if (bannerPremium) bannerPremium.style.display = 'none';
+    if (errorMsg) errorMsg.style.display = 'none';
+
+    // 2. VALIDACIÓN ESTRICTA: Si está mal, muestra error, oculta la sensi y CORTA AQUÍ
+    if (!dispositivo || !isValidDevice(dispositivo)) {
+        if (errorMsg) errorMsg.style.display = 'block';
+        if (resultsContainer) resultsContainer.style.display = 'none';
+        return; 
+    }
+
+    // 3. SI ESTÁ BIEN: Muestra resultados, calcula y lanza la animación
+    if (errorMsg) errorMsg.style.display = 'none';
+    if (resultsContainer) resultsContainer.style.display = 'block';
+    
+    isPremiumActive = false;
+
+    if (typeof calculateSensi === 'function') {
+        calculateSensi(dispositivo, false);
+    }
+
+    if (bannerVip) {
+        bannerVip.style.display = 'block';
+        if (typeof mostrarPerfecta === 'function') {
+            mostrarPerfecta();
+        }
+    }
+}
+
+// --- 4. CONTROLADOR DE INTENSIDAD CORREGIDO ---
+// Guardamos la función anterior de forma segura si existe
+const _oldChangeIntensity = typeof changeIntensity === 'function' ? changeIntensity : null;
+
+// Declaramos changeIntensity permitiendo sobreescritura con let/var
+var changeIntensity = function(intensity) {
+    isPremiumActive = false;
+    const btnPrem = document.getElementById('btnPremium');
+    if(btnPrem) {
+        btnPrem.style.background = "#121216";
+        btnPrem.style.color = "#ffcc00";
+        btnPrem.style.boxShadow = "0 0 10px rgba(255, 204, 0, 0.2)";
+    }
+    if (_oldChangeIntensity) {
+        _oldChangeIntensity(intensity);
+    }
+};
+// --- 5. ANIMACIÓN EMERGENTE PREMIUM ---
+function mostrarPremiumAnimacion() {
+    const banner = document.getElementById('impacto-premium');
+    const txt = document.getElementById('txt-premium');
+    if (!banner || !txt) return;
+
+    playFatalSound();
+    
+    banner.style.display = 'block';
+    txt.innerText = "PREMIUN ACTIVA";
+    txt.style.opacity = '1';
+    
+    let shakes = 0;
+    const interval = setInterval(() => {
+        txt.style.transform = `translate(${Math.random()*8-4}px, ${Math.random()*8-4}px) scale(1.2)`;
+        if (shakes++ > 12) {
+            clearInterval(interval);
+            txt.style.transform = 'scale(1)';
+        }
+    }, 30);
+
+    setTimeout(() => {
+        txt.style.transition = "transform 0.3s, opacity 0.4s";
+        txt.style.transform = 'scale(2.5)';
+        txt.style.opacity = '0';
+        
+        setTimeout(() => { 
+            banner.style.display = 'none'; 
+            txt.style.transition = "none"; 
+        }, 400);
+    }, 2200);
+}
+
+// --- 6. VINCULACIÓN SEGURA DEL BOTÓN CALIBRAR (EVITA DUPLICADOS) ---
+window.addEventListener('DOMContentLoaded', () => {
+    const btnCalibrar = document.querySelector('.main-btn'); 
+    if (btnCalibrar) {
+        // Clonar el botón para eliminar cualquier event listener anterior o conflictos de HTML
+        const nuevoBtn = btnCalibrar.cloneNode(true);
+        btnCalibrar.parentNode.replaceChild(nuevoBtn, btnCalibrar);
+
+        nuevoBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            process(); // Llama directamente a la función centralizada
+        });
+    }
+});
+document.addEventListener("DOMContentLoaded", function() {
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -50px 0px', // Activa la animación un poco antes de que toque el borde inferior de la pantalla
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                // Deja de observar el elemento una vez que ya apareció para optimizar rendimiento
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Activa la observación en todos los elementos que tengan la clase .reveal
+    document.querySelectorAll('.reveal').forEach(element => {
+        observer.observe(element);
+    });
+});
+</script>
+
+</body>
+</html>
