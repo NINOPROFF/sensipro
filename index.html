@@ -580,9 +580,202 @@ footer {
 * {
     scrollbar-width: thin;
     scrollbar-color: #2a2a35 #121216; /* [Deslizador] [Fondo] */
-} </style>
+} /* Modal con estilo exacto SENSI ✕ PRO */
+.sp-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.sp-modal-card {
+  position: relative;
+  background: #0b0b0e;
+  border: 1px solid rgba(255, 0, 80, 0.35);
+  border-radius: 16px;
+  padding: 24px 20px;
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9), 0 0 25px rgba(255, 0, 80, 0.2);
+  animation: spScaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes spScaleIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Alineación horizontal del encabezado */
+.sp-header-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.sp-avatar-container {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  padding: 2px;
+  background: #000;
+  border: 2px solid #ff0050;
+  box-shadow: 0 0 10px rgba(255, 0, 80, 0.8);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sp-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Estilo exacto de la marca SENSI ✕ PRO */
+.sp-brand-title {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sp-text-sensi {
+  color: #ffffff;
+  font-weight: 900;
+}
+
+/* El símbolo ✕ en rojo con neón */
+.sp-symbol-x {
+  color: #ff0050;
+  font-size: 20px;
+  font-weight: 900;
+  text-shadow: 0 0 10px rgba(255, 0, 80, 0.9);
+  margin: 0 2px;
+}
+
+.sp-text-pro {
+  color: #ff0050;
+  font-weight: 900;
+  text-shadow: 0 0 12px rgba(255, 0, 80, 0.8);
+}
+
+.sp-modal-card h2 {
+  margin: 0 0 8px 0;
+  font-size: 17px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.sp-modal-card p {
+  font-size: 13px;
+  color: #9ca3af;
+  margin-bottom: 18px;
+  line-height: 1.4;
+}
+
+.sp-action-box {
+  background: #121216;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 12px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.sp-step {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: #d1d5db;
+  margin: 6px 0;
+}
+
+.sp-num {
+  background: #ff0050;
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 11px;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.sp-btn-primary {
+  background: linear-gradient(135deg, #ff0050 0%, #c70039 100%);
+  border: none;
+  color: #fff;
+  padding: 13px 20px;
+  font-weight: 800;
+  border-radius: 8px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 13px;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(255, 0, 80, 0.4);
+  transition: all 0.2s ease;
+}
+
+.sp-btn-primary:active {
+  transform: scale(0.98);
+}</style>
 </head>
 <body>
+    <!-- Modal de aviso SENSI ✕ PRO para usuarios de TikTok -->
+<div id="tiktok-alert-modal" class="sp-modal-overlay">
+  <div class="sp-modal-card">
+    
+    <!-- Encabezado con el símbolo exacto sin usar imágenes -->
+    <div class="sp-header-brand">
+      <div class="sp-avatar-container">
+        <!-- Si tienes tu logo en imagen puedes dejar la etiqueta img, de lo contrario usamos la marca en texto -->
+        <img src="https://i.postimg.cc/T15yW3hP/Whats-App-Image-2026-09-02-at-11-04-02-AM-(1).jpg" alt="Logo" class="sp-avatar" onerror="this.style.display='none'">
+      </div>
+      <div class="sp-brand-title">
+        <span class="sp-text-sensi">SENSI</span>
+        <span class="sp-symbol-x">✗</span>
+        <span class="sp-text-pro">PRO</span>
+      </div>
+    </div>
+
+    <h2>VIENES DE TIKTOK</h2>
+    <p>El navegador interno de TikTok pausa el temporizador. Abre la web en tu navegador principal para continuar.</p>
+    
+    <div class="sp-action-box">
+      <div class="sp-step">
+        <span class="sp-num">1</span> <span>Toca los <b>3 puntos (⋮)</b> arriba a la derecha</span>
+      </div>
+      <div class="sp-step">
+        <span class="sp-num">2</span> <span>Selecciona <b>"Abrir en el navegador"</b></span>
+      </div>
+    </div>
+
+    <button class="sp-btn-primary" onclick="cerrarAvisoTikTok()">ENTENDIDO, CONTINUAR</button>
+  </div>
+</div>
 <!-- NAVBAR -->
 <nav class="navbar reveal">
     <div class="nav-container">
@@ -853,7 +1046,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
         statsObserver.observe(statsSection);
     }
-});
+});function cerrarAvisoTikTok() {
+  const modal = document.getElementById('tiktok-alert-modal');
+  if (modal) {
+    modal.style.opacity = '0';
+    modal.style.transition = 'opacity 0.2s ease';
+    setTimeout(() => {
+      modal.style.display = 'none';
+    }, 200);
+  }
+}
 </script>
 </body>
 </html>
