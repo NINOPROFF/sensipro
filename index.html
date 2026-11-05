@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SENSIPRO</title>
+    <title>SENSI✗PRO</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/Dw7HZWnK/Gemini-Generated-Image-azc5c8azc5c8azc5-modified.png">
     <style>:root {
     --bg-main: #0a0a0c;
     --bg-card: #121216;
@@ -580,64 +581,96 @@ footer {
 * {
     scrollbar-width: thin;
     scrollbar-color: #2a2a35 #121216; /* [Deslizador] [Fondo] */
-} /* Modal con estilo exacto SENSI ✕ PRO */
-.sp-modal-overlay {
+
+    
+}.sp-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.92);
-  backdrop-filter: blur(8px);
+  
+  /* Forzamos el gradiente universo con un toque traslúcido para que combine con la página */
+  background: linear-gradient(125deg, rgba(5,5,8,0.95), rgba(26,0,17,0.95), rgba(8,0,26,0.95), rgba(5,5,8,0.95)) !important;
+  background-size: 400% 400% !important;
+  animation: universeBg 8s ease infinite !important;
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 99999;
-  padding: 20px;
+  z-index: 999999;
+  padding: 16px;
   box-sizing: border-box;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
 }
 
+@keyframes universeBg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 .sp-modal-card {
   position: relative;
-  background: #0b0b0e;
-  border: 1px solid rgba(255, 0, 80, 0.35);
-  border-radius: 16px;
-  padding: 24px 20px;
-  max-width: 380px;
+  background: linear-gradient(145deg, #0e0e14 0%, #07070a 100%);
+  border: 1px solid rgba(255, 0, 80, 0.5);
+  border-radius: 24px;
+  padding: 26px 20px 20px 20px;
+  max-width: 400px;
   width: 100%;
   text-align: center;
   color: #ffffff;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9), 0 0 25px rgba(255, 0, 80, 0.2);
-  animation: spScaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.98), 0 0 45px rgba(255, 0, 80, 0.2);
+  animation: spScaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes spScaleIn {
-  from { transform: scale(0.9); opacity: 0; }
+  from { transform: scale(0.93); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
 
-/* Alineación horizontal del encabezado */
+.sp-close-x {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #a1a1aa;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.sp-close-x:hover {
+  background: rgba(255, 0, 80, 0.2);
+  border-color: #ff0050;
+  color: #ffffff;
+}
+
 .sp-header-brand {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  margin-bottom: 16px;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 .sp-avatar-container {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   padding: 2px;
   background: #000;
   border: 2px solid #ff0050;
-  box-shadow: 0 0 10px rgba(255, 0, 80, 0.8);
+  box-shadow: 0 0 14px rgba(255, 0, 80, 0.8);
   flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .sp-avatar {
@@ -647,111 +680,307 @@ footer {
   object-fit: cover;
 }
 
-/* Estilo exacto de la marca SENSI ✕ PRO */
 .sp-brand-title {
   font-size: 22px;
   font-weight: 900;
-  letter-spacing: 0.5px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  letter-spacing: 0.5px;
 }
 
-.sp-text-sensi {
-  color: #ffffff;
-  font-weight: 900;
-}
-
-/* El símbolo ✕ en rojo con neón */
+.sp-text-sensi { color: #ffffff; }
 .sp-symbol-x {
   color: #ff0050;
-  font-size: 20px;
-  font-weight: 900;
   text-shadow: 0 0 10px rgba(255, 0, 80, 0.9);
-  margin: 0 2px;
 }
-
 .sp-text-pro {
   color: #ff0050;
-  font-weight: 900;
   text-shadow: 0 0 12px rgba(255, 0, 80, 0.8);
 }
 
-.sp-modal-card h2 {
-  margin: 0 0 8px 0;
-  font-size: 17px;
+.sp-badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 0, 80, 0.1);
+  border: 1px solid rgba(255, 0, 80, 0.3);
+  color: #ff0050;
+  font-size: 10px;
   font-weight: 800;
-  color: #fff;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  margin-bottom: 6px;
 }
 
-.sp-modal-card p {
-  font-size: 13px;
-  color: #9ca3af;
-  margin-bottom: 18px;
+.sp-subtitle {
+  font-size: 12px;
+  color: #8e8e93;
+  margin: 0 0 16px 0;
   line-height: 1.4;
 }
 
-.sp-action-box {
-  background: #121216;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
-  padding: 12px;
-  text-align: left;
-  margin-bottom: 20px;
+.sp-multilink-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 16px;
 }
 
-.sp-step {
+.sp-btn-group-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.sp-pulsing-badge {
+  position: absolute;
+  top: -10px;
+  right: 16px;
+  background: linear-gradient(135deg, #ff0050, #ff5e00);
+  color: #fff;
+  font-size: 9.5px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  z-index: 5;
+  box-shadow: 0 0 12px rgba(255, 0, 80, 0.8);
+  animation: pulseBadge 1.5s infinite;
+}
+
+@keyframes pulseBadge {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 80, 0.8); }
+  70% { transform: scale(1.06); box-shadow: 0 0 0 8px rgba(255, 0, 80, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 80, 0); }
+}
+
+.sp-sub-label {
+  font-size: 11px;
+  color: #ff3366;
+  font-weight: 700;
+  margin-top: 6px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  text-shadow: 0 0 8px rgba(255, 0, 80, 0.4);
+}
+
+.sp-link-btn {
   display: flex;
   align-items: center;
-  font-size: 13px;
-  color: #d1d5db;
-  margin: 6px 0;
+  gap: 14px;
+  padding: 13px 16px;
+  border-radius: 16px;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
+  text-align: left;
 }
 
-.sp-num {
-  background: #ff0050;
-  color: #fff;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
+.sp-link-btn:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 0, 80, 0.7);
+}
+
+.sp-link-btn:active {
+  transform: scale(0.97);
+}
+
+.sp-icon-wrapper {
+  width: 42px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
-  font-size: 11px;
-  margin-right: 10px;
   flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-.sp-btn-primary {
-  background: linear-gradient(135deg, #ff0050 0%, #c70039 100%);
-  border: none;
-  color: #fff;
-  padding: 13px 20px;
+.sp-svg-icon {
+  width: 20px;
+  height: 20px;
+  stroke: #ffffff;
+}
+
+.sp-yt-icon-box {
+  background: rgba(255, 0, 0, 0.08);
+  border-color: rgba(255, 0, 0, 0.2);
+}
+
+.sp-youtube-logo {
+  width: 22px;
+  height: 16px;
+  display: block;
+  margin: auto;
+  filter: drop-shadow(0 0 8px rgba(255, 0, 0, 0.6));
+}
+
+.sp-btn-text strong {
+  display: block;
+  font-size: 13.5px;
   font-weight: 800;
-  border-radius: 8px;
-  width: 100%;
-  cursor: pointer;
-  font-size: 13px;
-  letter-spacing: 1px;
-  box-shadow: 0 4px 15px rgba(255, 0, 80, 0.4);
-  transition: all 0.2s ease;
+  letter-spacing: 0.8px;
+  line-height: 1.2;
 }
 
-.sp-btn-primary:active {
-  transform: scale(0.98);
-}</style>
+.sp-btn-text small {
+  display: block;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.65);
+  margin-top: 3px;
+  font-weight: 400;
+}
+
+.sp-btn-generator {
+  background: linear-gradient(135deg, #ff0050 0%, #a80034 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 18px rgba(255, 0, 80, 0.45);
+  animation: pulseGlow 2.2s infinite;
+}
+
+.sp-btn-generator .sp-icon-wrapper {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(255, 0, 80, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(255, 0, 80, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 0, 80, 0); }
+}
+
+.sp-btn-youtube {
+  background: #121217;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.sp-btn-youtube:hover {
+  border-color: #ff0050;
+  background: #181820;
+}
+
+.sp-modal-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 10px 6px;
+}
+
+.sp-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sp-stat-item strong {
+  font-size: 13px;
+  color: #ff0050;
+  font-weight: 800;
+}
+
+.sp-stat-item span {
+  font-size: 9px;
+  color: #71717a;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+.sp-stat-divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.08);
+}
+/* Efecto de degradado en movimiento continuo (Universo / Neón viajero) */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Aplicación del efecto dinámico a las viñetas */
+.sp-pulsing-badge,
+.sp-pulsing-badge-yt {
+  position: absolute;
+  top: -10px;
+  right: 16px;
+  color: #fff;
+  font-size: 9.5px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  z-index: 5;
+  /* Fondo dinámico de alta velocidad con gradiente expansivo */
+  background: linear-gradient(270deg, #ff0050, #ff5e00, #9900ff, #ff0050);
+  background-size: 300% 300%;
+  animation: gradientMove 3s ease infinite, pulseBadge 1.5s infinite;
+  box-shadow: 0 0 14px rgba(255, 0, 80, 0.7);
+}
+
+/* Sincronización del pulso para mantener la animación limpia */
+@keyframes pulseBadge {
+  0% { transform: scale(1); }
+  70% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+/* Asegurar que al cerrar el modal todo desaparezca instantáneamente */
+#tiktok-alert-modal[style*="display: none"] {
+  display: none !important;
+}
+.sp-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Fondo oscuro con un degradado radial estilo viñeta profesional */
+  background: radial-gradient(circle at center, rgba(15, 15, 22, 0.92) 0%, rgba(3, 3, 5, 0.98) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+  padding: 16px;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, sans-serif;
+  animation: fadeInOverlay 0.3s ease forwards;
+}
+
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+</style>
 </head>
-<body>
-    <!-- Modal de aviso SENSI ✕ PRO para usuarios de TikTok -->
+<body><!-- Modal / Multilink Profesional SENSI ✕ PRO -->
 <div id="tiktok-alert-modal" class="sp-modal-overlay">
   <div class="sp-modal-card">
     
-    <!-- Encabezado con el símbolo exacto sin usar imágenes -->
+    <!-- Botón de Cerrar (Equis ✕) -->
+    <button class="sp-close-x" onclick="cerrarModalManual()" aria-label="Cerrar modal">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Header Brand con tu foto y marca -->
     <div class="sp-header-brand">
       <div class="sp-avatar-container">
-        <!-- Si tienes tu logo en imagen puedes dejar la etiqueta img, de lo contrario usamos la marca en texto -->
         <img src="https://i.postimg.cc/T15yW3hP/Whats-App-Image-2026-09-02-at-11-04-02-AM-(1).jpg" alt="Logo" class="sp-avatar" onerror="this.style.display='none'">
       </div>
       <div class="sp-brand-title">
@@ -761,21 +990,97 @@ footer {
       </div>
     </div>
 
-    <h2>VIENES DE TIKTOK</h2>
-    <p>El navegador interno de TikTok pausa el temporizador. Abre la web en tu navegador principal para continuar.</p>
-    
-    <div class="sp-action-box">
-      <div class="sp-step">
-        <span class="sp-num">1</span> <span>Toca los <b>3 puntos (⋮)</b> arriba a la derecha</span>
+    <!-- Badge Algoritmo -->
+    <div class="sp-badge-tag">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+      <span>ALGORITMO DE SENSIBILIDAD 2026</span>
+    </div>
+
+    <p class="sp-subtitle">Optimización táctica para Android e iOS</p>
+
+    <!-- Contenedor de Botones Multilink -->
+    <div class="sp-multilink-container">
+      
+      <!-- BLOQUE GENERADOR CON ETIQUETA PALPITANTE ARRIBA -->
+      <div class="sp-btn-group-wrapper">
+        <div class="sp-pulsing-badge">¡ENTRA AQUÍ!</div>
+        <a href="https://ninoproff.github.io/sensipro/generador.html" class="sp-link-btn sp-btn-generator" onclick="marcarVisto()">
+          <div class="sp-icon-wrapper">
+            <svg class="sp-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <div class="sp-btn-text">
+            <strong>GENERADOR DE SENSIBILIDAD</strong>
+            <small>Calibración precisa para tu dispositivo</small>
+          </div>
+        </a>
       </div>
-      <div class="sp-step">
-        <span class="sp-num">2</span> <span>Selecciona <b>"Abrir en el navegador"</b></span>
+<!-- BLOQUE YOUTUBE CON ETIQUETA FLOTANTE ARRIBA -->
+      <div class="sp-btn-group-wrapper">
+        
+        <!-- Estilo exclusivo para la etiqueta flotante de YouTube -->
+        <style>
+          .sp-pulsing-badge-yt {
+            position: absolute;
+            top: -10px;
+            right: 16px;
+            background: linear-gradient(135deg, #ff0000, #ff5e00);
+            color: #fff;
+            font-size: 9.5px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            z-index: 5;
+            box-shadow: 0 0 12px rgba(255, 0, 0, 0.8);
+            animation: pulseBadgeYt 1.5s infinite;
+          }
+          @keyframes pulseBadgeYt {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.8); }
+            70% { transform: scale(1.06); box-shadow: 0 0 0 8px rgba(255, 0, 0, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+          }
+        </style>
+
+        <div class="sp-pulsing-badge-yt">¡SUSCRÍBETE!</div>
+        
+        <a href="https://www.youtube.com/@ninoproff" target="_blank" class="sp-link-btn sp-btn-youtube" onclick="marcarVisto()">
+          <div class="sp-icon-wrapper sp-yt-icon-box">
+            <svg class="sp-youtube-logo" viewBox="0 0 24 24" fill="#FF0000">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </div>
+          <div class="sp-btn-text">
+            <strong>SUSCRIBETE EN YOUTUBE</strong>
+            <small>Configuraciones VIP y clips de juego</small>
+          </div>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Stats Integrados con tus datos reales de TikTok -->
+    <div class="sp-modal-stats">
+      <div class="sp-stat-item">
+        <strong>72.3K</strong>
+        <span>SEGUIDORES</span>
+      </div>
+      <div class="sp-stat-divider"></div>
+      <div class="sp-stat-item">
+        <strong>184.5K</strong>
+        <span>ME GUSTA</span>
+      </div>
+      <div class="sp-stat-divider"></div>
+      <div class="sp-stat-item">
+        <strong>99.4%</strong>
+        <span>PRECISIÓN</span>
       </div>
     </div>
 
-    <button class="sp-btn-primary" onclick="cerrarAvisoTikTok()">ENTENDIDO, CONTINUAR</button>
   </div>
 </div>
+
 <!-- NAVBAR -->
 <nav class="navbar reveal">
     <div class="nav-container">
@@ -1055,7 +1360,103 @@ document.addEventListener("DOMContentLoaded", function() {
       modal.style.display = 'none';
     }, 200);
   }
+}document.addEventListener("DOMContentLoaded", function () {
+  const modal = document.getElementById("tiktok-alert-modal");
+  
+  // Se muestra siempre al cargar la página
+  if (modal) {
+    modal.style.display = "flex";
+  }
+});
+
+// Función cuando hacen clic en los botones (marca opcional o redirecciona)
+function marcarVisto() {
+  // Opcional si quieres hacer algo extra al hacer clic
 }
+
+// Función para cerrar el modal al tocar la equis (✕)
+function cerrarModalManual() {
+  const modal = document.getElementById("tiktok-alert-modal");
+  if (modal) {
+    modal.style.opacity = "0";
+    modal.style.transition = "opacity 0.2s ease";
+    setTimeout(() => {
+      modal.style.display = "none";
+    }, 200);
+  }
+}// SCRIPT DE UNIVERSO DE PARTÍCULAS GAMER PARA EL FONDO DEL MULTILINK
+document.addEventListener("DOMContentLoaded", function () {
+  const modal = document.getElementById("tiktok-alert-modal");
+  if (!modal) return;
+
+  // Crear el canvas de fondo para las partículas
+  const canvas = document.createElement("canvas");
+  canvas.id = "sp-universe-particles";
+  canvas.style.position = "absolute";
+  canvas.style.top = "0";
+  canvas.style.left = "0";
+  canvas.style.width = "100%";
+  canvas.style.height = "100%";
+  canvas.style.zIndex = "0";
+  canvas.style.pointerEvents = "none";
+  modal.insertBefore(canvas, modal.firstChild);
+
+  // Asegurar que la tarjeta esté por encima de las partículas
+  const card = modal.querySelector(".sp-modal-card");
+  if (card) {
+    card.style.position = "relative";
+    card.style.zIndex = "2";
+  }
+
+  const ctx = canvas.getContext("2d");
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener("resize", resize);
+
+  const colores = ["#ff0050", "#ff5e00", "#9900ff", "#00f0ff", "#ffffff"];
+  const particulas = [];
+  const total = 55;
+
+  for (let i = 0; i < total; i++) {
+    particulas.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      radio: Math.random() * 2 + 0.5,
+      color: colores[Math.floor(Math.random() * colores.length)],
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5
+    });
+  }
+
+  function animar() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particulas.forEach((p) => {
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height;
+      if (p.y > canvas.height) p.y = 0;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radio, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = p.color;
+      ctx.fill();
+    });
+
+    requestAnimationFrame(animar);
+  }
+
+  animar();
+});
 </script>
 </body>
 </html>
