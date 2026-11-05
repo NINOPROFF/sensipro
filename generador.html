@@ -1683,6 +1683,106 @@ function ejecutarConAnuncio(tipoBoton) {
 function process() {
     ejecutarConAnuncio('calibrar');
 }
+// --- GUARDAR Y RESTAURAR ESTADO AL VOLVER DEL ANUNCIO DE MONETAG ---
+window.addEventListener('DOMContentLoaded', () => {
+    // 1. Revisar si hay una calibración previa guardada en la sesión
+    const datosGuardados = sessionStorage.getItem('sensi_activa_guardada');
+    
+    if (datosGuardados) {
+        const info = JSON.parse(datosGuardados);
+        const input = document.getElementById('phone');
+        if (input) input.value = info.dispositivo;
+        
+        isPremiumActive = info.esPremium;
+        
+        // Mostrar los resultados de inmediato sin recargar la animación de 10s
+        const resultsContainer = document.querySelector('.results') || document.querySelector('.sensi-display') || document.getElementById('results');
+        if (resultsContainer) resultsContainer.style.display = 'block';
+        
+        if (info.esPremium && typeof activatePremium === 'function') {
+            activatePremium();
+        } else if (typeof calculateSensi === 'function') {
+            calculateSensi(info.dispositivo, false);
+        }
+        
+        // Limpiamos para que al recargar limpio la página de cero vuelva a pedir acción
+        sessionStorage.removeItem('sensi_activa_guardada');
+    }
+});
+
+function ejecutarConAnuncio(tipoBoton) {
+    const input = document.getElementById('phone');
+    const dispositivo = input ? input.value.trim() : "";
+    const errorMsg = document.getElementById('error-msg');
+    const resultsContainer = document.querySelector('.results') || document.querySelector('.sensi-display') || document.getElementById('results');
+
+    // Validar el dispositivo antes de lanzar la publicidad o animación
+    if (tipoBoton === 'calibrar') {
+        if (!dispositivo || (typeof isValidDevice === 'function' && !isValidDevice(dispositivo))) {
+            if (errorMsg) errorMsg.style.display = 'block';
+            if (resultsContainer) resultsContainer.style.display = 'none';
+            return; 
+        }
+    }
+
+    if (errorMsg) errorMsg.style.display = 'none';
+
+    // 1. Guardar el estado actual en sessionStorage antes de abrir el enlace externo (Monetag)
+    sessionStorage.setItem('sensi_activa_guardada', JSON.stringify({
+        dispositivo: dispositivo,
+        esPremium: (tipoBoton === 'premium')
+    }));
+
+    // 2. Abrir el anuncio de Monetag en nueva pestaña
+    window.open('https://uplcm.com/4/12058904', '_blank');
+
+    // 3. Ocultar resultados previos
+    if (resultsContainer) resultsContainer.style.display = 'none';
+
+    // 4. Mostrar la animación con el contador de 10 segundos
+    const overlay = document.getElementById('overlay-sensi');
+    const txtContador = document.getElementById('contador-sensi');
+    let segundos = 10;
+
+    if (overlay) overlay.style.display = 'flex';
+    if (txtContador) txtContador.textContent = segundos + 's';
+
+    // 5. Iniciar la cuenta regresiva de 10 a 0 segundos
+    const cuenta = setInterval(() => {
+        segundos--;
+        if (txtContador) txtContador.textContent = segundos + 's';
+
+        if (segundos <= 0) {
+            clearInterval(cuenta);
+            if (overlay) overlay.style.display = 'none'; // Oculta el contador
+
+            // 6. Mostrar la sensibilidad calculada al terminar los 10 segundos
+            if (resultsContainer) resultsContainer.style.display = 'block';
+
+            if (tipoBoton === 'calibrar') {
+                isPremiumActive = false;
+                if (typeof calculateSensi === 'function') {
+                    calculateSensi(dispositivo, false);
+                }
+                const bannerVip = document.getElementById('impacto-vip');
+                if (bannerVip) {
+                    bannerVip.style.display = 'block';
+                    if (typeof mostrarPerfecta === 'function') {
+                        mostrarPerfecta();
+                    }
+                }
+            } else if (tipoBoton === 'premium') {
+                if (typeof activatePremium === 'function') {
+                    activatePremium();
+                }
+            }
+        }
+    }, 1000);
+}
+
+function process() {
+    ejecutarConAnuncio('calibrar');
+}
 </script>
 </body>
 </html>
