@@ -1683,7 +1683,7 @@ function ejecutarConAnuncio(tipoBoton) {
 function process() {
     ejecutarConAnuncio('calibrar');
 }
-// --- GUARDAR Y RESTAURAR ESTADO CORRECTO AL VOLVER DEL ANUNCIO ---
+// --- GUARDAR Y RESTAURAR TODO EL ESTADO AL VOLVER DEL ANUNCIO ---
 window.addEventListener('DOMContentLoaded', () => {
     const datosGuardados = sessionStorage.getItem('sensi_activa_guardada');
     
@@ -1692,23 +1692,31 @@ window.addEventListener('DOMContentLoaded', () => {
         const input = document.getElementById('phone');
         if (input) input.value = info.dispositivo;
         
+        // Restaurar modo DPI y la Intensidad exacta elegida por el usuario
+        if (typeof changeMode === 'function') changeMode(info.esDPI);
+        if (typeof changeIntensity === 'function') changeIntensity(info.intensidad);
+        
+        isPremiumActive = info.esPremium;
+        
         const resultsContainer = document.querySelector('.results') || document.querySelector('.sensi-display') || document.getElementById('results');
         
-        if (info.tipo === 'premium') {
-            isPremiumActive = true;
-            if (resultsContainer) resultsContainer.style.display = 'block';
-            if (typeof activatePremium === 'function') {
-                activatePremium();
-            }
-        } else if (info.tipo === 'calibrar') {
-            isPremiumActive = false;
-            if (resultsContainer) resultsContainer.style.display = 'block';
-            if (typeof calculateSensi === 'function') {
-                calculateSensi(info.dispositivo, false);
+        if (resultsContainer) resultsContainer.style.display = 'block';
+
+        if (info.esPremium && typeof activatePremium === 'function') {
+            activatePremium();
+        } else if (typeof calculateSensi === 'function') {
+            calculateSensi(info.dispositivo, false);
+            // Si fue calibración normal, mostramos su respectiva animación roja
+            if (info.tipo === 'calibrar') {
+                const bannerVip = document.getElementById('impacto-vip');
+                if (bannerVip) bannerVip.style.display = 'block';
+                if (typeof mostrarPerfecta === 'function') {
+                    mostrarPerfecta();
+                }
             }
         }
         
-        // Limpiamos la memoria temporal para que funcione limpio la próxima vez
+        // Limpiamos la memoria temporal para dejar limpio el navegador
         sessionStorage.removeItem('sensi_activa_guardada');
     }
 });
@@ -1719,7 +1727,7 @@ function ejecutarConAnuncio(tipoBoton) {
     const errorMsg = document.getElementById('error-msg');
     const resultsContainer = document.querySelector('.results') || document.querySelector('.sensi-display') || document.getElementById('results');
 
-    // Validar el dispositivo antes de lanzar la publicidad o animación
+    // 1. Validar el dispositivo antes de lanzar la publicidad o animación
     if (tipoBoton === 'calibrar') {
         if (!dispositivo || (typeof isValidDevice === 'function' && !isValidDevice(dispositivo))) {
             if (errorMsg) errorMsg.style.display = 'block';
@@ -1730,19 +1738,22 @@ function ejecutarConAnuncio(tipoBoton) {
 
     if (errorMsg) errorMsg.style.display = 'none';
 
-    // 1. Guardamos exactamente el tipo de botón ('calibrar' o 'premium')
+    // 2. Guardar TODAS las configuraciones actuales en sessionStorage antes de abrir el anuncio
     sessionStorage.setItem('sensi_activa_guardada', JSON.stringify({
         dispositivo: dispositivo,
-        tipo: tipoBoton
+        tipo: tipoBoton,
+        esPremium: (tipoBoton === 'premium'),
+        intensidad: typeof currentIntensity !== 'undefined' ? currentIntensity : 'mid',
+        esDPI: typeof currentModeWithDPI !== 'undefined' ? currentModeWithDPI : true
     }));
 
-    // 2. Abrir el anuncio de Monetag en nueva pestaña
+    // 3. Abrir el anuncio de Monetag en nueva pestaña
     window.open('https://uplcm.com/4/12058904', '_blank');
 
-    // 3. Ocultar resultados previos
+    // 4. Ocultar resultados previos
     if (resultsContainer) resultsContainer.style.display = 'none';
 
-    // 4. Mostrar la animación con el contador de 10 segundos
+    // 5. Mostrar la animación con el contador de 10 segundos
     const overlay = document.getElementById('overlay-sensi');
     const txtContador = document.getElementById('contador-sensi');
     let segundos = 10;
@@ -1750,7 +1761,7 @@ function ejecutarConAnuncio(tipoBoton) {
     if (overlay) overlay.style.display = 'flex';
     if (txtContador) txtContador.textContent = segundos + 's';
 
-    // 5. Iniciar la cuenta regresiva de 10 a 0 segundos
+    // 6. Iniciar la cuenta regresiva de 10 a 0 segundos
     const cuenta = setInterval(() => {
         segundos--;
         if (txtContador) txtContador.textContent = segundos + 's';
@@ -1759,7 +1770,7 @@ function ejecutarConAnuncio(tipoBoton) {
             clearInterval(cuenta);
             if (overlay) overlay.style.display = 'none'; // Oculta el contador
 
-            // 6. Mostrar el resultado correcto según el botón que se presionó
+            // 7. Mostrar la sensibilidad calculada al terminar los 10 segundos
             if (resultsContainer) resultsContainer.style.display = 'block';
 
             if (tipoBoton === 'calibrar') {
