@@ -1457,7 +1457,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   animar();
 });document.addEventListener("DOMContentLoaded", function () {
-  // Interceptar clics en los enlaces del multilink para forzar apertura externa desde TikTok
   const enlaces = document.querySelectorAll('.sp-link-btn');
 
   enlaces.forEach(enlace => {
@@ -1465,26 +1464,13 @@ document.addEventListener("DOMContentLoaded", function () {
       const userAgent = navigator.userAgent || navigator.vendor || window.opera;
       const esTikTok = userAgent.includes("musical_ly") || userAgent.includes("TikTok") || document.referrer.includes("tiktok.com");
 
-      // Si el usuario está dentro de TikTok, intentamos forzar la salida al navegador externo
       if (esTikTok) {
-        e.preventDefault(); // Evita que abra dentro de la app de TikTok
-        marcarVisto();      // Guarda que ya interactuó para que no vuelva a salir el modal
-
-        const urlDestino = this.getAttribute("href");
-        const esAndroid = /android/i.test(userAgent);
-
-        if (esAndroid) {
-          // Fuerza la apertura en Google Chrome en Android mediante esquema Intent
-          window.location.href = `intent://${urlDestino.replace(/^https?:\/\//, '')}#Intent;scheme=https;package=com.android.chrome;end;`;
-        } else {
-          // En iPhone (iOS) o cualquier otro, abre en pestaña externa del sistema
-          window.open(urlDestino, '_system');
-        }
-
-        // Plan de respaldo: Si el sistema bloquea el intent, abre de manera estándar tras un segundo
-        setTimeout(() => {
-          window.open(urlDestino, '_blank');
-        }, 500);
+        // Guardamos como visto para que no vuelva a salir el modal
+        marcarVisto();
+        
+        // En lugar de bloquear la acción con preventDefault() (lo que causa el error),
+        // dejamos que el navegador abra el enlace de forma nativa en una pestaña nueva o externa.
+        this.setAttribute("target", "_blank");
       }
     });
   });
