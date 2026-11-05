@@ -1683,9 +1683,8 @@ function ejecutarConAnuncio(tipoBoton) {
 function process() {
     ejecutarConAnuncio('calibrar');
 }
-// --- GUARDAR Y RESTAURAR ESTADO AL VOLVER DEL ANUNCIO DE MONETAG ---
+// --- GUARDAR Y RESTAURAR ESTADO CORRECTO AL VOLVER DEL ANUNCIO ---
 window.addEventListener('DOMContentLoaded', () => {
-    // 1. Revisar si hay una calibración previa guardada en la sesión
     const datosGuardados = sessionStorage.getItem('sensi_activa_guardada');
     
     if (datosGuardados) {
@@ -1693,19 +1692,23 @@ window.addEventListener('DOMContentLoaded', () => {
         const input = document.getElementById('phone');
         if (input) input.value = info.dispositivo;
         
-        isPremiumActive = info.esPremium;
-        
-        // Mostrar los resultados de inmediato sin recargar la animación de 10s
         const resultsContainer = document.querySelector('.results') || document.querySelector('.sensi-display') || document.getElementById('results');
-        if (resultsContainer) resultsContainer.style.display = 'block';
         
-        if (info.esPremium && typeof activatePremium === 'function') {
-            activatePremium();
-        } else if (typeof calculateSensi === 'function') {
-            calculateSensi(info.dispositivo, false);
+        if (info.tipo === 'premium') {
+            isPremiumActive = true;
+            if (resultsContainer) resultsContainer.style.display = 'block';
+            if (typeof activatePremium === 'function') {
+                activatePremium();
+            }
+        } else if (info.tipo === 'calibrar') {
+            isPremiumActive = false;
+            if (resultsContainer) resultsContainer.style.display = 'block';
+            if (typeof calculateSensi === 'function') {
+                calculateSensi(info.dispositivo, false);
+            }
         }
         
-        // Limpiamos para que al recargar limpio la página de cero vuelva a pedir acción
+        // Limpiamos la memoria temporal para que funcione limpio la próxima vez
         sessionStorage.removeItem('sensi_activa_guardada');
     }
 });
@@ -1727,10 +1730,10 @@ function ejecutarConAnuncio(tipoBoton) {
 
     if (errorMsg) errorMsg.style.display = 'none';
 
-    // 1. Guardar el estado actual en sessionStorage antes de abrir el enlace externo (Monetag)
+    // 1. Guardamos exactamente el tipo de botón ('calibrar' o 'premium')
     sessionStorage.setItem('sensi_activa_guardada', JSON.stringify({
         dispositivo: dispositivo,
-        esPremium: (tipoBoton === 'premium')
+        tipo: tipoBoton
     }));
 
     // 2. Abrir el anuncio de Monetag en nueva pestaña
@@ -1756,7 +1759,7 @@ function ejecutarConAnuncio(tipoBoton) {
             clearInterval(cuenta);
             if (overlay) overlay.style.display = 'none'; // Oculta el contador
 
-            // 6. Mostrar la sensibilidad calculada al terminar los 10 segundos
+            // 6. Mostrar el resultado correcto según el botón que se presionó
             if (resultsContainer) resultsContainer.style.display = 'block';
 
             if (tipoBoton === 'calibrar') {
