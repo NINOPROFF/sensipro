@@ -1456,24 +1456,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   animar();
-});document.addEventListener("DOMContentLoaded", function () {
-  const enlaces = document.querySelectorAll('.sp-link-btn');
-
-  enlaces.forEach(enlace => {
-    enlace.addEventListener("click", function (e) {
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-      const esTikTok = userAgent.includes("musical_ly") || userAgent.includes("TikTok") || document.referrer.includes("tiktok.com");
-
-      if (esTikTok) {
-        // Guardamos como visto para que no vuelva a salir el modal
-        marcarVisto();
-        
-        // En lugar de bloquear la acción con preventDefault() (lo que causa el error),
-        // dejamos que el navegador abra el enlace de forma nativa en una pestaña nueva o externa.
-        this.setAttribute("target", "_blank");
-      }
-    });
-  });
 });
 </script>
 </body>
